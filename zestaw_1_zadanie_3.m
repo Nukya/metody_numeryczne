@@ -32,7 +32,7 @@ PiPodstawione = subs(Pi,{C, i, R},{aC, ai, aR});
 
 
 % podstawienie do wzoru na błąd bezwzględny funkcji
-deltaP = abs(PrPodstawione) * deltaR + abs(PiPodstawione) * deltaI + abs(PcPodstawione) * deltaC
+deltaP = abs(PrPodstawione) * deltaR + abs(PiPodstawione) * deltaI + abs(PcPodstawione) * deltaC;
 
 % podstawienie do wzoru na błąd względny funkcji
-% wzglednaDeltaP
+wzglednaDeltaP = (deltaP)/(abs(PPodstawione));
