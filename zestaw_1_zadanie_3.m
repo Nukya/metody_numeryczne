@@ -1,4 +1,3 @@
-
 clc
 
 syms C i R
@@ -10,7 +9,6 @@ Pc=diff(P, C);
 Pr=diff(P, R);
 Pi=diff(P, i);
 
-disp(Pr)
 % surowe dane
 rawC = 1.1; %mF
 rawR = 1; %kOhm
@@ -32,7 +30,8 @@ PiPodstawione = subs(Pi,{C, i, R},{aC, ai, aR});
 
 
 % podstawienie do wzoru na błąd bezwzględny funkcji
-deltaP = abs(PrPodstawione) * deltaR + abs(PiPodstawione) * deltaI + abs(PcPodstawione) * deltaC;
+bladBezwzglednyP = abs(PrPodstawione) * deltaR + abs(PiPodstawione) * deltaI + abs(PcPodstawione) * deltaC;
 
 % podstawienie do wzoru na błąd względny funkcji
-wzglednaDeltaP = (deltaP)/(abs(PPodstawione));
+
+bladWzglednyP = (bladBezwzglednyP)/(abs(PPodstawione));
