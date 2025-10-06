@@ -35,3 +35,6 @@ bladBezwzglednyP = abs(PrPodstawione) * deltaR + abs(PiPodstawione) * deltaI + a
 % podstawienie do wzoru na błąd względny funkcji
 
 bladWzglednyP = (bladBezwzglednyP)/(abs(PPodstawione));
+
+
+% aaa
