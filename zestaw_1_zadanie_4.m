@@ -51,8 +51,10 @@ plot(xd, yd, 'b-', 'LineWidth', 1.5); hold on;
 plot(x, y, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 8);
 plot(x_val, WN, 'ks', 'MarkerFaceColor', 'g', 'MarkerSize', 8);
 
-xlabel('x');
-ylabel('WN(x)');
+xlabel('$x$', 'Interpreter', 'latex');
+ylabel('$WN(x)$', 'Interpreter', 'latex');
 title('Interpolacja Newtona - Aproksymacja wielomianowa');
 legend('Wielomian interpolacyjny', 'Punkty pomiarowe', sprintf('WN(%.3f)=%.3f', x_val, WN), 'Location', 'Best');
 grid on;
+
+% saveas(gcf, 'D:\repos\metody_numeryczne\zestaw_1_zadanie_4_1.png')

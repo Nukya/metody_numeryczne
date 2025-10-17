@@ -1,3 +1,7 @@
+clc;
+clear;
+close all;
+
 A = 41/4;
 t = linspace(0, 2*pi, 100);
 f1 = A * sin(A * t);
@@ -10,8 +14,10 @@ hold off;
 
 xlim([0 3.5])
 
-xlabel('t [s]');
-ylabel('sin(t)');
+xlabel('$t [s]$', 'Interpreter', 'latex');
+ylabel('$sin(t)$', 'Interpreter', 'latex');
 title('Kinga Kondraciuk');
 legend show; 
 grid on;
+
+% saveas(gcf, 'D:\repos\metody_numeryczne\zestaw_1_zadanie_1.png')

@@ -1,5 +1,3 @@
-% czyszczenie
-
 clear;
 close all;
 clc;
@@ -69,9 +67,6 @@ f = @(t) exp(-0.1*t) .* (g(t)).^2;
 wyniki(i) = integral(f, -2, 2);
 end
 
-disp('Stopień  Polyfit MNK')
-disp([degrees' results' wyniki'])
-
 y_fit2 = polyval(wsp, x_fit);
 
 
@@ -81,7 +76,13 @@ plot(x_fit, y_fit2);
 xlim([-6 6.5])
 
 legend('Aproksymacja', 'Dane');
-xlabel('x');
-ylabel('f(x)');
+xlabel('x', 'Interpreter', 'latex');
+ylabel('f(x)', 'Interpreter', 'latex');
 title('Aproksymacja');
 hold off;
+
+T = table(degrees', results', wyniki',...
+    'VariableNames', {'Stopień', 'Polyfit', 'MNK'});
+disp(T);
+
+% saveas(gcf, 'D:\repos\metody_numeryczne\zestaw_1_zadanie_2.png')

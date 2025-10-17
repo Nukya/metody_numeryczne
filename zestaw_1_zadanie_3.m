@@ -1,14 +1,14 @@
-clc
-clear
+clc;
+clear;
+close all;
 
-syms C i R
+% Funkcja P(C, i, R)
+P = @(C, i, R) (R.^2 .* i.^2) ./ (C + R);
 
-P=(R^2 * i^2)/(C+R);
-
-% pochodne cząstkowe
-Pc=diff(P, C);
-Pr=diff(P, R);
-Pi=diff(P, i);
+% Pochodne cząstkowe
+Pc = @(C, i, R) -R.^2 .* i.^2 ./ (C + R).^2;
+Pr = @(C, i, R) (2.*R.*i.^2.*(C + R) - R.^2.*i.^2) / (C + R).^2;
+Pi = @(C, i, R) 2 .* R.^2 .* i ./ (C + R);
 
 % surowe dane
 rawC = 1.1;     %mF
@@ -25,11 +25,11 @@ deltaC = 0.05 * aC;
 deltaR = 0.02 * aR;
 deltaI = 0.01 * ai;
 
-PcPodstawione = subs(Pc,{C, i, R},{aC, ai, aR});
-PrPodstawione = subs(Pr,{C, i, R},{aC, ai, aR});
-PiPodstawione = subs(Pi,{C, i, R},{aC, ai, aR});
+PcPodstawione = Pc(aC, ai, aR);
+PrPodstawione = Pr(aC, ai, aR);
+PiPodstawione = Pi(aC, ai, aR);
 
-PPodstawione = subs(P,{C, i, R},{aC, ai, aR});
+PPodstawione = P(aC, ai, aR);
 
 % podstawienie do wzoru na błąd bezwzględny funkcji
 bladBezwzglednyP = abs(PrPodstawione) * deltaR + abs(PiPodstawione) * deltaI + abs(PcPodstawione) * deltaC;
