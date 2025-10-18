@@ -21,7 +21,7 @@ for j = 2:n
     end
 end
 
-C = [x' F]
+C = [x' F];
 
 e = diag(F)';       % wyciągniecie współczynników z przekątnej
 
@@ -57,4 +57,6 @@ title('Interpolacja Newtona - Aproksymacja wielomianowa');
 legend('Wielomian interpolacyjny', 'Punkty pomiarowe', sprintf('WN(%.3f)=%.3f', x_val, WN), 'Location', 'Best');
 grid on;
 
-% saveas(gcf, 'D:\repos\metody_numeryczne\zestaw_1_zadanie_4_1.png')
+
+[~, scriptName, ~] = fileparts(mfilename('fullpath'));
+saveas(gcf, [scriptName, '.png']);
