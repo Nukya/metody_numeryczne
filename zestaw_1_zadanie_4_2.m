@@ -67,4 +67,4 @@ T = table(ileWezlow', bladRound', ...
     'VariableNames', {'Liczba węzłow', 'Średni bład interpolacji'});
 disp(T);
 
-% saveas(gcf, 'D:\repos\metody_numeryczne\zestaw_1_zadanie_4_2.png')
+% saveas(gcf, fullfile(pwd, 'zestaw_1_zadanie_4_2.png'));
