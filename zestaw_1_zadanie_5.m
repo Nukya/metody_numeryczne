@@ -99,7 +99,6 @@ function result = phi(xi, h, x)
     xi_p1 = xi + h;
     xi_p2 = xi + 2*h;
 
-    % Obliczenie wartości funkcji zgodnie ze wzorem (z użyciem czyWZakresie)
     if czyWZakresie(x, xi_m2, xi_m1)
         y = (x - xi_m2)^3;
     elseif czyWZakresie(x, xi_m1, xi)
@@ -112,7 +111,7 @@ function result = phi(xi, h, x)
         y = 0;
     end
 
-    % Zgodnie ze wzorem: Φ_i(x) = y / h^3
+    %Φ_i(x) = y / h^3
     result = y / h^3;
 end
 
