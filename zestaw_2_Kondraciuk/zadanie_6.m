@@ -2,7 +2,7 @@ close all
 clear
 clc
 
-% --- Dane ---
+%  Dane 
 dane = [
 0.2 0
 0.3 0
@@ -23,34 +23,28 @@ h = 0.1;
 l = ((n+1)*h)/2;   % pół długości przedziału
 c = pi / l;        % współczynnik skali dla x
 
-% --- Współczynniki ---
-a0 = 1/(n+1)*sum(y);
+%  Współczynniki 
+a0 = 1/(n+1)*sum(y)
 
-a1 = 2/(n+1)*sum(y .* cos(1*c*x));
-a2 = 2/(n+1)*sum(y .* cos(2*c*x));
-a3 = 2/(n+1)*sum(y .* cos(3*c*x));
-a4 = 2/(n+1)*sum(y .* cos(4*c*x));
-a5 = 2/(n+1)*sum(y .* cos(5*c*x));
-a6 = 2/(n+1)*sum(y .* cos(6*c*x));
+a1 = 2/(n+1)*sum(y .* cos(1*c*x))
+a2 = 2/(n+1)*sum(y .* cos(2*c*x))
+a3 = 2/(n+1)*sum(y .* cos(3*c*x))
+
 
 b1 = 2/(n+1)*sum(y .* sin(1*c*x));
 b2 = 2/(n+1)*sum(y .* sin(2*c*x));
 b3 = 2/(n+1)*sum(y .* sin(3*c*x));
-b4 = 2/(n+1)*sum(y .* sin(4*c*x));
-b5 = 2/(n+1)*sum(y .* sin(5*c*x));
-b6 = 2/(n+1)*sum(y .* sin(6*c*x));
 
-% --- Aproksymacja ---
+
+%  Aproksymacja 
 xd = 0:0.01:max(x);
 yd = a0 ...
    + a1*cos(1*c*xd) + b1*sin(1*c*xd) ...
    + a2*cos(2*c*xd) + b2*sin(2*c*xd) ...
-   + a3*cos(3*c*xd) + b3*sin(3*c*xd) ...
-   + a4*cos(4*c*xd) + b4*sin(4*c*xd) ...
-   + a5*cos(5*c*xd) + b5*sin(5*c*xd) ...
-   + a6*cos(6*c*xd) + b6*sin(6*c*xd);
+   + a3*cos(3*c*xd) + b3*sin(3*c*xd);
 
-% --- Wykres ---
+
+%  Wykres 
 plot(x, y, 'or', 'MarkerFaceColor', 'r'); hold on;
 plot(xd, yd, '--b', 'LineWidth', 1.5);
 xlabel('x');

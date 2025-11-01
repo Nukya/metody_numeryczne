@@ -13,7 +13,7 @@ xlabel('x')
 ylabel('f(x)')
 title('f(x) = 1 / (1 + e^{-x})')
 
-%  Budowa macierzy projektującej (bez x^2) 
+%  Budowa macierzy (bez x^2) 
 X = [ones(size(xi(:))), xi(:), xi(:).^3, xi(:).^4];
 
 %  Obliczenie współczynników wielomianu w sensie najmniejszych kwadratów
@@ -27,14 +27,14 @@ xd = linspace(-5, 5, 1000);
 yd = f(xd);
 pd = p(xd);
 
-% ---------------------------------------------------
+% =================
 
 diff = yd - pd;               % wektor różnic
 MAE = mean(abs(diff));        % średni błąd bezwzględny 
 %                               -> zsumuj wektor różnic i podziel prze liczbę punktów
 RMSE = sqrt(mean(diff.^2));   % pierwiastek z błędu średniokwadratowego
 
-% --- Wyniki ---
+%Wyniki 
 fprintf('Współczynniki aproksymacji:\n');
 fprintf('a0 = %.6f\n', a0);
 fprintf('a1 = %.6f\n', a1);
@@ -43,7 +43,7 @@ fprintf('a4 = %.6f\n', a4);
 fprintf('\nŚredni błąd bezwzględny = %.6f\n', MAE);
 fprintf('Pierwiastek z błędu średniokwadratowego (RMSE) = %.6f\n', RMSE);
 
-% --- Wykres ---
+%Wykres 
 figure('Color','w');
 plot(xd, yd, 'LineWidth', 1.5, 'DisplayName', 'f(x) = 1/(1+e^{-x})');
 hold on;
