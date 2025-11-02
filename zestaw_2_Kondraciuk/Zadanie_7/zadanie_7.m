@@ -44,13 +44,18 @@ fprintf('\nŚredni błąd bezwzględny = %.6f\n', MAE);
 fprintf('Pierwiastek z błędu średniokwadratowego (RMSE) = %.6f\n', RMSE);
 
 %Wykres 
+attr = {'Interpreter', 'latex'};
 figure('Color','w');
-plot(xd, yd, 'LineWidth', 1.5, 'DisplayName', 'f(x) = 1/(1+e^{-x})');
+plot(xd, yd, 'LineWidth', 1.5, 'DisplayName', '$f(x) = \frac{1}{(1+e^{-x})}$');
 hold on;
-plot(xd, pd, '--', 'LineWidth', 1.5, 'DisplayName', 'p(x) = a0 + a1x + a3x^3 + a4x^4');
+plot(xd, pd, '--', 'LineWidth', 1.5, 'DisplayName', '$p(x) = a_0 + a_1x + a_3x^3 + a_4x^4$');
 plot(xi, yi, 'ro', 'DisplayName', 'węzły aproksymacji');
 grid on;
-xlabel('x'); ylabel('y');
-title('Aproksymacja funkcji sigmoidalnej wielomianem bez składnika x^2');
-legend('Location','best');
+xlabel('$x$', attr{:});
+ylabel('$y$', attr{:});
+title('Aproksymacja wielomianowa 3-go stopnia');
+legend('Location','best', attr{:});
 set(gca, 'FontSize', 12);
+
+% saveas(gcf,'zadanie_7.png')
+

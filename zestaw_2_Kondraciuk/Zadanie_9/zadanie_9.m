@@ -7,8 +7,8 @@ F = @(x) [x(1)*x(2) - x(1) - 2;
           x(1)^2 - x(2)^2 - 1];
 
 %  Jakobian 
-J = @(x) [x(2) - 1, x(1);
-          2*x(1), -2*x(2)];
+J = @(x) [x(2) - 1,     x(1);
+          2*x(1),       -2*x(2)];
 
 %  Punkt startowy 
 %    x1    x2
@@ -64,3 +64,5 @@ zlabel('$f(x_1,x_2)$', attr{:});
 view([-312.5 21.3]);
 grid on;
 hold off;
+
+% saveas(gcf,'zadanie_9.png')

@@ -24,17 +24,28 @@ l = ((n+1)*h)/2;   % pół długości przedziału
 c = pi / l;        % współczynnik skali dla x
 
 %  Współczynniki 
-a0 = 1/(n+1)*sum(y)
 
-a1 = 2/(n+1)*sum(y .* cos(1*c*x))
-a2 = 2/(n+1)*sum(y .* cos(2*c*x))
-a3 = 2/(n+1)*sum(y .* cos(3*c*x))
+MTY = [ sum(y); 
+        sum(y .* cos(1*c*x)); 
+        sum(y .* sin(1*c*x)); 
+        sum(y .* cos(2*c*x)); 
+        sum(y .* sin(2*c*x)); 
+        sum(y .* cos(3*c*x)); 
+        sum(y .* sin(3*c*x))]
 
 
-b1 = 2/(n+1)*sum(y .* sin(1*c*x));
-b2 = 2/(n+1)*sum(y .* sin(2*c*x));
-b3 = 2/(n+1)*sum(y .* sin(3*c*x));
 
+MTM = diag([n+1, (n+1)/2, (n+1)/2, (n+1)/2, (n+1)/2, (n+1)/2, (n+1)/2]);
+
+A = MTM \ MTY
+
+a0 = A(1);
+a1 = A(2);
+b1 = A(3);
+a2 = A(4);
+b2 = A(5);
+a3 = A(6);
+b3 = A(7);
 
 %  Aproksymacja 
 xd = 0:0.01:max(x);

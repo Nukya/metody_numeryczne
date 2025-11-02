@@ -51,3 +51,5 @@ hold off;
 grid on; 
 
 fprintf('Przybliżona wartość całki metodą złożonych prostokątów: %.4g\n', IProstokat);
+
+% saveas(gcf,'zadanie_10.png')

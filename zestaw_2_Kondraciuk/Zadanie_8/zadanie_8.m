@@ -65,3 +65,5 @@ for i = 1:length(pierwiastki)
         'HorizontalAlignment', 'left', ...
         'FontSize', 9, 'Color', 'r', 'FontWeight', 'bold');
 end
+
+% saveas(gcf,'zadanie_8.png')
