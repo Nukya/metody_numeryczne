@@ -20,4 +20,3 @@ title('Kinga Kondraciuk');
 legend show; 
 grid on;
 
-% saveas(gcf, 'D:\repos\metody_numeryczne\zestaw_1_zadanie_1.png')
