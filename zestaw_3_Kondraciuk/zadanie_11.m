@@ -97,10 +97,10 @@ grid on;
 
 Metoda = ["Węzły Legendre'a"; "Węzły Legendre'a"; "Węzły Legendre'a"; "Węzły Legendre'a"; ...
           "Metoda złożona parabol"; "Wynik Wolfram"];
-Wezly = [1;2;3;4;1000;0];
+Rzad = [1;2;3;4;1000;0];
 Wartosc = [calka_1; calka_2; calka_3; calka_4; calka_simpson; 0.0237525];
 
-T = table(Metoda, Wezly, Wartosc);
+T = table(Metoda, Rzad, Wartosc);
 disp(T);
 
 % saveas(gca, "zadanie_11.png");

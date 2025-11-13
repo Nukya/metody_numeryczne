@@ -1,16 +1,22 @@
+
 clc
 clear
-close all;
-clc;
-clear;
+close all
 
-f = @(y1,y2) [ 1*y1 - 0.005*y1*y2;
-              -1*y2 + 0.0025*y1*y2 ];
+c1   = 1;
+c2   = 1;
+a12  = 0.005;
+a21  = 0.0025;
+
+% osobne równania
+f1 = @(y1,y2)  c1*y1 - a12*y1*y2;         % dy1/dt
+f2 = @(y1,y2) -c2*y2 + a21*y1*y2;         % dy2/dt
 
 a = 0;
 b = 25;
 
-H = [0.01, 0.005];
+H = [0.005, 0.0025];      % wybrano mniejsze kroki, na potrzeby wykresu
+
 y0 = [400; 80];
 
 attr = {'Interpreter','latex'};
@@ -20,14 +26,15 @@ figure
 for k = 1:2
 
     h = H(k);
-    n = (b-a)/h;
     t = a:h:b;
+    n = length(t);
 
-    y = zeros(2, n+1);
+    y = zeros(2, n);
     y(:,1) = y0;
 
-    for i = 1:n
-        y(:,i+1) = y(:,i) + h * f(y(1,i), y(2,i));
+    for i = 1:n-1
+        y(1,i+1) = y(1,i) + h * f1(y(1,i), y(2,i));   % równanie 1
+        y(2,i+1) = y(2,i) + h * f2(y(1,i), y(2,i));   % równanie 2
     end
 
     subplot(2,1,k)
@@ -42,5 +49,3 @@ for k = 1:2
     grid on
 
 end
-
-% saveas(gca, "zadanie_12.png");
