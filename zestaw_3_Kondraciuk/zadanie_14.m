@@ -12,9 +12,9 @@ dA = 1e-4;
 yA0 = solveEuler(A0,h,xspan);
 figure;
 plot(xspan,yA0(1,:),xspan,yA0(2,:));
-legend("y1","y2","Location","best");
-title("Metoda Eulera dla A = 4");
-xlabel("x"); ylabel("y(x)");
+legend("$y_1$","$y_2$","Location","best");
+title("Metoda Eulera dla $A = 4$");
+xlabel("$x$"); ylabel("$y(x)$");
 
 A = A0;
 tab = [];
@@ -28,7 +28,9 @@ for k = 1:50
     y1Ad = y_d(1,end);
     fAd = y1Ad - y1_target;
 
-    tab = [tab; k A y1A fA fAd];
+    y2A = y(2,end);
+    tab = [tab; k A y1A y2A fA fAd];
+
 
     Anew = A - fA * dA / (fAd - fA);
 
@@ -43,13 +45,14 @@ y_final = solveEuler(A,h,xspan);
 
 figure;
 plot(xspan,y_final(1,:),xspan,y_final(2,:));
-legend("y1","y2","Location","best");
-title(sprintf("Rozwiązanie dla A = %.10f",A));
-xlabel("x"); ylabel("y(x)");
+legend("$y_1$","$y_2$","Location","best");
+title(sprintf("Metoda Eulera dla $A = %.4g$",A));
+xlabel("$x$"); ylabel("$y(x)$");
 
 disp("Tabela iteracji quasi-Newtona:");
 disp(array2table(tab, ...
-    'VariableNames',{'iter','A_i','y1_i','f(A_i)','f(A_i_plus_dA)'}));
+    'VariableNames',{'iter','A_i','y1_i','y2_i','f(A_i)','f(A_i_plus_dA)'}));
+
 
 
 function y = solveEuler(A,h,t)
