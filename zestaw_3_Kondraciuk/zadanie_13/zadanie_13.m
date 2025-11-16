@@ -1,6 +1,6 @@
-clc
-clear
-close all
+clc;
+clear;
+close all;
 
 c1   = 1;
 c2   = 1;

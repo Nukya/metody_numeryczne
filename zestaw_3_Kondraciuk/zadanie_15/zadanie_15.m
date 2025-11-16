@@ -1,6 +1,6 @@
-clear
-close all
-clc
+clc;
+clear;
+close all;
 
 f = @(x) 1/5 + 1/20*x + 1./(1+exp(-2*(x-1))) - 1./(1+exp(-3*x));
 

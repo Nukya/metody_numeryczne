@@ -1,6 +1,6 @@
-clear
-close all
-clc
+clc;
+clear;
+close all;
 
 h = 0.01;
 xspan = 0:h:20;
