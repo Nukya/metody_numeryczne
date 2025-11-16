@@ -10,11 +10,14 @@ y1_target = 15.366;
 dA = 1e-4;
 
 yA0 = solveEuler(A0,h,xspan);
+
+attr = {'Interpreter','latex'};
 figure;
 plot(xspan,yA0(1,:),xspan,yA0(2,:));
-legend("$y_1$","$y_2$","Location","best");
-title("Metoda Eulera dla $A = 4$");
-xlabel("$x$"); ylabel("$y(x)$");
+legend("$y_1$","$y_2$","Location","best", attr{:});
+title("Metoda Eulera dla $A = 4$", attr{:});
+xlabel("$x$", attr{:}); 
+ylabel("$y(x)$", attr{:});
 
 A = A0;
 tab = [];
@@ -45,9 +48,10 @@ y_final = solveEuler(A,h,xspan);
 
 figure;
 plot(xspan,y_final(1,:),xspan,y_final(2,:));
-legend("$y_1$","$y_2$","Location","best");
-title(sprintf("Metoda Eulera dla $A = %.4g$",A));
-xlabel("$x$"); ylabel("$y(x)$");
+legend("$y_1$","$y_2$","Location","best", attr{:});
+title(sprintf("Metoda Eulera dla $A = %.4g$",A), attr{:});
+xlabel("$x$", attr{:}); 
+ylabel("$y(x)$", attr{:});
 
 disp("Tabela iteracji quasi-Newtona:");
 disp(array2table(tab, ...
@@ -63,3 +67,5 @@ function y = solveEuler(A,h,t)
         y(:,i) = y(:,i-1) + f(t(i-1),y(:,i-1))*h;
     end
 end
+
+% saveas(gca, "zadanie_14.png");

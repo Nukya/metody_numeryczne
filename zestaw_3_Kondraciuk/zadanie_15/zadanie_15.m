@@ -41,10 +41,14 @@ for m = 1:length(A)
     R = [R xm];
 end
 
+attr = {'Interpreter','latex'};
+
 plot(x, y)
 hold on
 yline(0)
 plot(R, f(R), 'o')
-xlabel('x')
-ylabel('f(x)')
+xlabel('$x$', attr{:})
+ylabel('$f(x)$', attr{:})
 hold off
+
+saveas(gca, "zadanie_14.png");

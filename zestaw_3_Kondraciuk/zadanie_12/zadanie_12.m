@@ -48,3 +48,5 @@ for k = 1:2
     grid on
 
 end
+
+% saveas(gca, "zadanie_12.png");

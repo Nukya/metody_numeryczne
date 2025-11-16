@@ -13,7 +13,7 @@ f2 = @(y1,y2) -c2*y2 + a21*y1*y2;
 a = 0;
 b = 25;
 
-H = [0.5, 0.25];
+H = [0.005, 0.0025];
 y0 = [400; 80];
 
 attr = {'Interpreter','latex'};
@@ -55,3 +55,5 @@ for k = 1:2
     grid on
 
 end
+
+saveas(gca, "zadanie_13.png");
