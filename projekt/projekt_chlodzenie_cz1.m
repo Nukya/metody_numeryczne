@@ -45,7 +45,7 @@ title('Temperatura oleju T_w(t)');
 xlabel('t [s]'); ylabel('T_w [C]'); legend; grid on;
 
 %% 5. Analiza wrażliwości na krok h
-krokiTestowe = [0.01, 0.0025];
+krokiTestowe = [0.2, 0.1, 0.001];
 
 figure; hold on;
 for krokTestu = krokiTestowe
