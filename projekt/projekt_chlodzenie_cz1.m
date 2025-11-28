@@ -1,53 +1,52 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   CHŁODZENIE PRĘTA – CZĘŚĆ 1
-%   Wersja zgodna ze szkieletem z instrukcji
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   PROJEKT: CHŁODZENIE PRĘTA – CZĘŚĆ 1
 
-function chlodzenie_preta_cz1
-clc; clear; close all;
+function projekt_chlodzenie_cz1
+clc; 
+clear; 
+close all;
 
-%% ================================
+
 %   PARAMETRY MODELU FIZYCZNEGO
-% ================================
-parametry.h  = 160;
-parametry.A  = 0.0109;
-parametry.mb = 0.2;
-parametry.mw = 2.5;
-parametry.cb = 3.85;
-parametry.cw = 4.1813;
 
-%% ================================
+parametry.h  = 160;      % wsp. wnikania ciepła [W/(m^2*K)]
+parametry.A  = 0.0109;   % powierzchnia wymiany [m^2]
+parametry.mb = 0.2;      % masa pręta [kg]
+parametry.mw = 2.5;      % masa oleju [kg]
+parametry.cb = 3.85;     % ciepło właśc. pręta [kJ/(kg*K)]
+parametry.cw = 4.1813;   % ciepło właśc. oleju [kJ/(kg*K)]
+
+
 %   WARUNKI POCZĄTKOWE
-% ================================
-Tb0 = 1200;
-Tw0 = 25;
+
+Tb0 = 1200;   % temperatura początkowa pręta [C]
+Tw0 = 25;     % temperatura początkowa oleju [C]
 stanPoczatkowy = [Tb0; Tw0];
 
-%% ================================
-%   PARAMETRY NUMERYCZNE
-% ================================
-przedzialCzasu = [0 5];
-krokCzasu = 0.0025;        % wybrany „lepszy" krok
 
-%% ================================
-%   1. SYMULACJA – EULER
-% ================================
+%   PARAMETRY NUMERYCZNE
+
+przedzialCzasu = [0 5];
+krokCzasu = 0.0025;               % krok czasu
+
+
+%   1. SYMULACJA – METODA EULERA
+
 [czasE, rozwE] = metodaEulera(@f, przedzialCzasu(1), przedzialCzasu(2), krokCzasu, stanPoczatkowy, parametry);
 
-%% ================================
-%   2. SYMULACJA – ZMODYFIKOWANY EULER
-% ================================
+
+%   2. SYMULACJA – METODA ZMODYFIKOWANEGO EULERA (HEUN)
+
 [czasM, rozwM] = metodaEuleraUlepszona(@f, przedzialCzasu(1), przedzialCzasu(2), krokCzasu, stanPoczatkowy, parametry);
 
-%% ================================
-%   3. SYMULACJA – ODE45 (referencja)
-% ================================
+
+%   3. SYMULACJA ODE45 – ROZWIĄZANIE REFERENCYJNE
+
 odefun = @(t,x) f(t,x,parametry);
 [czas45, rozw45] = ode45(odefun, przedzialCzasu, stanPoczatkowy);
 
-%% ================================
-%   4. WYKRESY: Tb(t), Tw(t)
-% ================================
+
+%   4. WYKRESY Tb(t), Tw(t)
+
 figure;
 subplot(2,1,1); hold on;
 plot(czasE, rozwE(:,1),'b','LineWidth',1.3,'DisplayName','Euler');
@@ -64,10 +63,9 @@ title('Temperatura oleju T_w(t)');
 xlabel('t [s]'); ylabel('T_w [C]'); legend; grid on;
 
 
-%% =============================================================
 %   5. ANALIZA WRAŻLIWOŚCI NA KROK h
-%% =============================================================
-krokiTestowe = [0.01, 0.0025];
+
+krokiTestowe = [  0.2 0.1 0.01 ];
 
 figure; hold on;
 for krokTestu = krokiTestowe
@@ -79,9 +77,9 @@ title('Wpływ kroku h na rozwiązanie'); xlabel('t'); ylabel('T_b');
 legend; grid on;
 
 
-%% =============================================================
 %   6. WERYFIKACJA Z DANYMI POMIAROWYMI
-%% =============================================================
+
+% Dane: Tb0 Tw0 mw t_obs Tb_exp Tw_exp
 pomiary = [
     1200 25 2.5 3 107.7 105.1
     800  25 2.5 3 79.1  78.0
@@ -95,14 +93,13 @@ pomiary = [
     1100 70 2.5 5 140.9 140.1
 ];
 
-fprintf("\n===== WERYFIKACJA MODEL–POMIAR =====\n");
+fprintf("\n WERYFIKACJA MODEL–POMIAR \n");
 fprintf("Nr | Tb_mod | Tb_exp | Tw_mod | Tw_exp | ErrTb | ErrTw\n");
 
 Tb_model = zeros(10,1);
 Tw_model = zeros(10,1);
 
 for i = 1:10
-
     parametry_i = parametry;
     parametry_i.mw = pomiary(i,3);   % zmiana masy oleju
 
@@ -117,9 +114,7 @@ for i = 1:10
 end
 
 
-%% =============================================================
 %   7. WRAŻLIWOŚĆ NA BŁĘDY DANYCH WEJŚCIOWYCH
-%% =============================================================
 
 Tb0_bazowe = 1200;
 Tw0_bazowe = 25;
@@ -151,20 +146,16 @@ title('Wrażliwość na błędy danych wejściowych');
 ylabel('\Delta T_b [C]');
 grid on;
 
-end % ================= koniec funkcji main =====================
+end 
+% ================= koniec funkcji głównej =====================
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                FUNKCJE – ZGODNE ZE SZKIELETEM
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                FUNKCJE POMOCNICZE
 
 
-%% ========================================================================
 %   RÓWNANIA STANU (ODE)
-%% ========================================================================
-function dx = f(~, x, parametry)
 
+function dx = f(~, x, parametry)
 Tb = x(1);
 Tw = x(2);
 
@@ -179,29 +170,22 @@ dTb = -(wspWnikania*powierzchnia)/(masaPreta*cieploPreta) * (Tb - Tw);
 dTw =  +(wspWnikania*powierzchnia)/(masaOleju*cieploOleju) * (Tb - Tw);
 
 dx = [dTb; dTw];
-
 end
 
 
-%% ========================================================================
-%   MODEL WSPÓŁCZYNNIKA h(Tb,Tw)
-%   (W CZĘŚCI 1 STAŁY – docelowo w Części 2 będzie nieliniowy)
-%% ========================================================================
+%   MODEL WSPÓŁCZYNNIKA h(Tb,Tw) – W CZĘŚCI 1 STAŁY
+
 function wsp_h = fh(Tb, Tw) %#ok<INUSD>
 wsp_h = 160; % stały dla Części 1
 end
 
 
-%% ========================================================================
-%   SYMULACJA DO t_obs – używana w wrażliwości
-%% ========================================================================
-function Tb_koniec = symuluj_jednorazowo(Tb0,Tw0,mw,czasObserwacji,parametry,krokCzasu)
+%   SYMULACJA DO t_obs – UŻYWANA W ANALIZIE WRAŻLIWOŚCI
 
+function Tb_koniec = symuluj_jednorazowo(Tb0,Tw0,mw,czasObserwacji,parametry,krokCzasu)
 parametryLokalne = parametry;
 parametryLokalne.mw = mw;
 
 [~, rozw] = metodaEuleraUlepszona(@f, 0, czasObserwacji, krokCzasu, [Tb0;Tw0], parametryLokalne);
-
 Tb_koniec = rozw(end,1);
-
 end
