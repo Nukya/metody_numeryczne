@@ -110,17 +110,23 @@ przypadki = {
 
 liczbaPrzypadkow = size(przypadki,1);
 deltaTb = zeros(liczbaPrzypadkow,1);
+Tb_koniec_przypadki = zeros(liczbaPrzypadkow,1);
 
 for i = 1:liczbaPrzypadkow
-    deltaTb(i) = symuluj_jednorazowo(przypadki{i,2}, przypadki{i,3}, przypadki{i,4}, ...
-        czasObserwacji, parametry, krokCzasu) - Tb_odniesienie;
+    Tb_koniec_przypadki(i) = symuluj_jednorazowo(przypadki{i,2}, przypadki{i,3}, przypadki{i,4}, ...
+        czasObserwacji, parametry, krokCzasu);
+    deltaTb(i) = Tb_koniec_przypadki(i) - Tb_odniesienie;
 end
 
-figure;
-bar(deltaTb); xticklabels(przypadki(:,1));
-title('Wrażliwość na błędy danych wejściowych');
-ylabel('\Delta T_b [C]');
-grid on;
+% Tabelaryczne zestawienie wrażliwości na błędy danych wejściowych
+fprintf("\n===== WRAŻLIWOŚĆ NA BŁĘDY DANYCH WEJŚCIOWYCH =====\n");
+fprintf("\nReferencyjne T_b(t=%.1f s): %.4f C\n\n", czasObserwacji, Tb_odniesienie);
+
+etykieta = string(przypadki(:,1));
+wynikiWrazliwosci = table(etykieta, Tb_koniec_przypadki, deltaTb, ...
+    'VariableNames', {"Przypadek", "Tb_koniec", "DeltaTb"});
+
+disp(wynikiWrazliwosci);
 
 end
 
