@@ -98,15 +98,6 @@ function [wsp_mnk, stopien] = konfiguruj_mnk(DeltaT, h)
 [~, wsp_mnk, stopien] = dopasuj_mnk(DeltaT, h);
 end
 
-function h_val = h_mnk(DeltaT, wsp_mnk)
-DeltaT = DeltaT(:).';
-h_val = zeros(size(DeltaT));
-for i = 1:numel(DeltaT)
-    h_val(i) = wartosc_wielomianu(wsp_mnk, DeltaT(i));
-end
-h_val = h_val(:);
-end
-
 %% --- Równania ODE ------------------------------------------------------
 function dx = f_zmienny_h(~, x, param, h_fun)
 Tb = x(1); Tw = x(2);
@@ -115,43 +106,6 @@ A = param.A; mb = param.mb; mw = param.mw; cb = param.cb; cw = param.cw;
 dTb = -(h*A)/(mb*cb) * (Tb - Tw);
 dTw =  +(h*A)/(mw*cw) * (Tb - Tw);
 dx = [dTb; dTw];
-end
-
-%% --- Narzędzia MNK i wielomiany ---------------------------------------
-function [err_struct, wsp, k_opt] = dopasuj_mnk(DeltaT, h)
-stopnie = 2:8;
-RMSE = zeros(size(stopnie));
-wsp_store = cell(size(stopnie));
-for i = 1:numel(stopnie)
-    k = stopnie(i);
-    wspolczynniki = aproksymacja_wielomianowa(DeltaT, h, k);
-    aproks = h_mnk(DeltaT, wspolczynniki);
-    RMSE(i) = sqrt(mean((aproks - h(:)).^2));
-    wsp_store{i} = wspolczynniki;
-end
-improvement = (RMSE(1:end-1) - RMSE(2:end)) ./ RMSE(1:end-1);
-idx = find(improvement < 0.01, 1, 'first');
-if isempty(idx)
-    [~, idx] = min(RMSE);
-else
-    idx = idx + 1;
-end
-k_opt = stopnie(idx);
-wsp = wsp_store{idx};
-err_struct = RMSE(idx);
-end
-
-function wart = wartosc_wielomianu(wsp, x)
-wart = 0;
-for i = 1:length(wsp)
-    wart = wart * x + wsp(i);
-end
-end
-
-%% --- Dane pomiarowe ----------------------------------------------------
-function [DeltaT_pom, h_pom] = pobierz_dane_pomiarowe()
-DeltaT_pom = [-1500 -1000 -300 -50 -1 1 20 50 200 400 1000 2000];
-h_pom      = [178   176   168  161 160 160 160.2 161 165 168 174 179];
 end
 
 %% --- Wizualizacje ------------------------------------------------------
