@@ -124,7 +124,7 @@ fprintf("\nReferencyjne T_b(t=%.1f s): %.4f C\n\n", czasObserwacji, Tb_odniesien
 
 etykieta = string(przypadki(:,1));
 wynikiWrazliwosci = table(etykieta, Tb_koniec_przypadki, deltaTb, ...
-    'VariableNames', {"Przypadek", "Tb_koniec", "DeltaTb"});
+    'VariableNames', {'Przypadek', 'Tb_koniec', 'DeltaTb'});
 
 disp(wynikiWrazliwosci);
 
