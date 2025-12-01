@@ -1,0 +1,70 @@
+\section{część 2. projektu}
+
+W ramach drugiej części projektu należało rozwiązać problem aproksymacji współczynnika przewodnictwa cieplnego $h$ na podstawie punktów pomiarowych. Do symulacji potrzebna jest funkcja ciągła, która pozwoli obliczać $h$ dla dowolnej różnicy temperatur $\Delta T$. Zadanie polegało na zaimplementowaniu i porównaniu trzech metod: aproksymacji wielomianowej metodą najmniejszych kwadratów (MNK), interpolacji wielomianowej Lagrange'a oraz funkcji sklejanych kubicznych (splajnów). Celem było wybranie najlepszej metody pod względem dokładności i stabilności numerycznej.
+
+\subsection{Analiza aproksymacji wielomianowej MNK}
+
+Zaimplementowano aproksymację wielomianową stopnia 5 metodą najmniejszych kwadratów. Metoda ta minimalizuje sumę kwadratów błędów, szukając optymalnych współczynników wielomianu.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.33\textheight]{cz2/mnk.png}
+	\caption{Aproksymacja MNK}
+
+\end{figure}
+
+Pomarańczowa krzywa na wykresie jest gładka i przebiega w pobliżu wszystkich punktów pomiarowych, nie przechodząc przez nie dokładnie. Charakterystyka ma kształt litery U z minimum w okolicach $\Delta T = 0^\circ$C, co odpowiada fizycznej naturze zjawiska. Uzyskano następujące błędy: średni błąd bezwzględny 1.58 W/m² (0.96\%), maksymalny błąd bezwzględny 4.79 W/m² (2.85\%). Metoda wykazuje wysoką stabilność numeryczną – brak oscylacji i gwałtownych zmian. Dodatkowo aproksymacja automatycznie wygładza ewentualny szum pomiarowy w danych wejściowych. Jest to istotna zaleta, ponieważ dane eksperymentalne zawsze zawierają niepewności pomiarowe.
+
+\subsection{Analiza interpolacji Lagrange'a}
+
+Zaimplementowano interpolację wielomianową Lagrange'a, która konstruuje wielomian przechodzący dokładnie przez wszystkie punkty pomiarowe.
+
+\begin{figure}[H]
+	
+	\centering
+	\includegraphics[height=0.33\textheight]{cz2/lag.png}
+	\caption{Interpolacja Lagrange'a}
+
+\end{figure}
+
+Czerwona krzywa przechodzi przez wszystkie punkty pomiarowe, jednak między węzłami występują silne oscylacje. Szczególnie widoczne są one na brzegach przedziału: w zakresie $\Delta T \in [-1500, -1000]^\circ$C krzywa spada do $\sim 145$ W/m², by następnie wzrosnąć do $\sim 180$ W/m², natomiast w zakresie $\Delta T \in [1500, 2000]^\circ$C wartość $h$ osiąga niefizyczne $\sim 210$ W/m². To tzw. efekt Rungego – charakterystyczne oscylacje wielomianów wysokiego stopnia przy nierównoodległych węzłach.
+
+Uzyskane błędy: średni błąd bezwzględny $1{,}18\,\mathrm{W/m^2}$ $(0{,}71\%),$ maksymalny $3{,}59\,\mathrm{W/m^2}.$ Liczby te są jednak mylące – dotyczą tylko punktów pomiarowych. Między węzłami błędy są znacznie większe, a oscylacje prowadzą do niefizycznych wartości $h$. Takie gwałtowne zmiany współczynnika powodują sztywność układu równań różniczkowych, co wymaga bardzo małego kroku całkowania i zwiększa koszt obliczeniowy. Metoda została zdyskwalifikowana ze względu na brak stabilności numerycznej.
+
+\newpage
+\subsection{Analiza funkcji sklejanych (splajn kubiczny)}
+
+Zaimplementowano funkcje sklejane trzeciego stopnia zgodnie z algorytmem z podręcznika. Metoda dzieli przedział na segmenty i w każdym używa osobnego wielomianu trzeciego stopnia. Wielomiany są połączone w węzłach w sposób zapewniający ciągłość funkcji, pierwszej i drugiej pochodnej (klasa gładkości $C^2$).
+
+\begin{figure}[H]
+	
+	\centering
+	\includegraphics[height=0.33\textheight]{cz2/splajn.png}
+	\caption{Splajn kubiczny}
+
+\end{figure}
+
+Fioletowa krzywa jest gładka i przebiega przez punkty pomiarowe bez oscylacji. W porównaniu do MNK, splajn dokładniej dopasowuje się do punktów, szczególnie w zakresach gdzie $h$ zmienia się szybciej. Uzyskano najniższe błędy spośród wszystkich metod: średni błąd bezwzględny 1.02 W/m² (0.63\%), maksymalny błąd 2.29 W/m² (1.43\%). Stanowi to poprawę o około 35\% względem MNK przy zachowaniu pełnej stabilności numerycznej.
+
+
+\begin{table}[H]
+	\centering
+	\renewcommand{\arraystretch}{1.3}
+	\caption{Błędy bezwzględne i względne}
+	
+	\begin{tabular}{|l|c|c|c|c|}
+		\hline
+		\multirow{2}{*}{\textbf{Metoda}} &
+		\multicolumn{2}{c|}{\textbf{Błąd bezwzględny}} &
+		\multicolumn{2}{c|}{\textbf{Błąd względny}} \\
+		\cline{2-5}
+		& \textbf{Średni} & \textbf{Maksymalny} & \textbf{Średni} & \textbf{Maksymalny} \\
+		\hline
+		MNK      & 1.5752 & 4.7903 & 0.95511 & 2.8514 \\
+		Lagrange & 1.1781 & 3.5873 & 0.71285 & 2.0382 \\
+		Splajn   & 1.0242 & 2.2889 & 0.63184 & 1.4306 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Algorytm z podręcznika wymaga równoodległych węzłów, co wymagało wstępnego przetworzenia danych. Wygenerowano 12 równoodległych punktów w przedziale $[-1500, 2000]^\circ$C, a wartości $h$ obliczono za pomocą interpolacji liniowej z oryginalnych danych nierównoodległych. Przekształcenie to wprowadza dodatkowy błąd i jest mało profesjonalne – w praktyce inżynierskiej stosuje się zaawansowane algorytmy splajnów dla węzłów nierównoodległych (np. spline z opcją \texttt{pchip} w MATLAB).

@@ -1,1 +1,60 @@
-\subsection*{Część 4.}
+\section{część 4. projektu}
+
+\subsection{Cel badawczy}
+
+Celem czwartej części projektu było wyznaczenie minimalnej masy oleju chłodzącego, która pozwala schłodzić pręt do temperatury $125^\circ$C w czasie $t=0{.}7$ s. W tym celu wykorzystano pełny, nieliniowy model chłodzenia wraz z aproksymowaną funkcją współczynnika wnikania ciepła $h(\Delta T)$ otrzymaną z funkcji sklejanych kubicznych. Rozwiązanie równania $T_b(m_w, 0{.}7\ \mathrm{s}) = 125^\circ\mathrm{C}$ przeprowadzono metodą Newtona--Raphsona.
+
+\subsection{Przebieg eksperymentu}
+
+W kolejnych iteracjach Newtona wykonywano symulację chłodzenia dla zadanej masy oleju i obliczano przybliżoną pochodną temperatury pręta względem masy:
+\[
+T'_b(m_w) \approx \frac{T_b(m_w + \Delta m_w) - T_b(m_w)}{\Delta m_w}.
+\]
+Aktualizacja wartości masy przebiegała zgodnie ze wzorem:
+\[
+m_w^{(i+1)} = m_w^{(i)} - 
+\frac{T_b(m_w^{(i)}) - 125}{T_b'(m_w^{(i)})}.
+\]
+Jako punkt startowy przyjęto $m_w^{(0)} = 2{.}0$ kg, a wartość różnicową $\Delta m_w = 0{.}02$ kg. Do całkowania równań różniczkowych wykorzystano ulepszoną metodę Eulera.
+
+\subsection{Analiza wyników}
+
+\subsubsection{Przebieg iteracji Newtona}
+
+W Tabeli~\ref{tab:newton} przedstawiono pełny przebieg iteracji metody Newtona--Raphsona. W pierwszych krokach obserwowano niestabilność spowodowaną dużym oddaleniem punktu startowego od właściwego rozwiązania. W kolejnych iteracjach algorytm szybko zbiegał do obszaru stabilnego i osiągnął wysoką dokładność końcową.
+
+\begin{table}[h!]
+	\centering
+	\caption{Iteracje metody Newtona-Raphsona dla równania $T_b(m_w)=125^\circ$C.}
+	\label{tab:newton}
+	\begin{tabular}{c|c|c|c|c}
+		\hline
+		Iteracja $i$ &
+		$m_w^{(i)}$ [kg] &
+		$T_b(m_w^{(i)})$ [$^\circ$C] &
+		$T_b'(m_w^{(i)})$ [$^\circ$C/kg] &
+		$\Delta T_b = T_b - T_\mathrm{cel}$ [$^\circ$C] \\
+		\hline
+		1 & 2.00000  & 35.0992  &  -4.957036  & -89.900794 \\
+		2 & 1.00000  & 45.0262  & -19.305357  & -79.973757 \\
+		3 & 0.50000  & 64.3812  & -73.289308  & -60.618750 \\
+		4 & 0.25000  & 101.2083 & -265.220581 & -23.791726 \\
+		5 & 0.16029  & 139.6936 & -580.334298 &  14.693621 \\
+		6 & 0.18561  & 125.3851 & -450.252403 &   0.385108 \\
+		7 & 0.18647  & 124.9638 & -446.649355 &  -0.036175 \\
+		8 & 0.18639  & 125.0036 & -446.988678 &   0.003566 \\
+		9 & 0.18640  & 124.9997 & -446.955240 &  -0.000350 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Na podstawie uzyskanych wyników wyznaczono wartość:
+\begin{displaymath}
+	m_w \approx 0{,}1864\ \text{kg},
+\end{displaymath}
+
+
+\subsection{Wnioski końcowe}
+
+Metoda Newtona-Raphsona okazała się skuteczną i szybką metodą rozwiązywania równania odwrotnego analizowanego w tej części projektu. Po kilku iteracjach osiągnięto wysoką dokładność rozwiązania. Jednocześnie zauważono, że model jest bardzo czuły na wartość masy oleju, co przejawia się dużą wartością pochodnej $T'_b(m_w)$ w pobliżu rozwiązania. Ponadto, uzyskany wynik leży daleko poza zakresem danych pomiarowych, co ogranicza jego interpretację fizyczną. W praktycznych zastosowaniach inżynierskich należałoby narzucić ograniczenia na minimalną masę chłodziwa tak, aby obliczenia były prowadzone wyłącznie w obszarze popartym eksperymentalnie.
+
