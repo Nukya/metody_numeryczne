@@ -7,7 +7,7 @@ function projekt_chlodzenie_cz2
     [dT_tab, h_tab] = dane_h();
 
 
-        % === Wygenerowanie równoodległych węzłów ΔT ===
+    %  Wygenerowanie równoodległych węzłów ΔT 
     N = numel(dT_tab);
     dT_eq = linspace(min(dT_tab), max(dT_tab), N);
     
@@ -35,7 +35,7 @@ function projekt_chlodzenie_cz2
 
     dT_dense = linspace(min(dT_tab), max(dT_tab), 500);
          
-    %% --- 1. MNK ---
+    %%  1. MNK 
     figure;
     hold on; grid on;
     plot(dT_tab, h_tab, 'ko', 'MarkerFaceColor','k', 'DisplayName','Dane pomiarowe');
@@ -46,7 +46,7 @@ function projekt_chlodzenie_cz2
     ylabel('h [W/m^2]');
     legend('Location','best');
 
-    %% --- 2. Lagrange ---
+    %%  2. Lagrange 
     figure;
     hold on; grid on;
     plot(dT_tab, h_tab, 'ko', 'MarkerFaceColor','k', 'DisplayName','Dane pomiarowe');
@@ -59,7 +59,7 @@ function projekt_chlodzenie_cz2
     
     
     
-    %% --- 3. Splajn ---
+    %%  3. Splajn 
     figure;
     hold on; grid on;
     plot(dT_tab, h_tab, 'ko', 'MarkerFaceColor','k', 'DisplayName','Dane pomiarowe');
@@ -88,7 +88,7 @@ function projekt_chlodzenie_cz2
     h = 0.001;
 
 
-    %% --- Symulacje dla wybranej metody ---
+    %%  Symulacje dla wybranej metody 
     [tM,  xM]  = metodaEuleraUlepszona_nielin(@f_nielin, t0, tK, h, x0, parametry, fh_mnk);
     [tL,  xL]  = metodaEuleraUlepszona_nielin(@f_nielin, t0, tK, h, x0, parametry, fh_lagrange);
     [tS,  xS]  = metodaEuleraUlepszona_nielin(@f_nielin, t0, tK, h, x0, parametry, fh_spline);
@@ -164,7 +164,7 @@ function projekt_chlodzenie_cz2
     );
     
     disp(' ');
-    disp('===== Błędy bezwzględne i względne =====');
+    disp('== Błędy bezwzględne i względne ==');
     disp(T_bledy);
 
 

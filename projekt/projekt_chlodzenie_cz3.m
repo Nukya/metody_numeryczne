@@ -1,7 +1,7 @@
 function projekt_chlodzenie_cz3
     clc; clear; close all;
 
-    %% ======= 1. Dane pomiarowe h(ΔT) =======
+    %%  1. Dane pomiarowe h(ΔT) 
     [dT_tab, h_tab] = dane_h();
 
     % Równoodległe węzły + h w tych punktach
@@ -9,7 +9,7 @@ function projekt_chlodzenie_cz3
     dT_eq = linspace(min(dT_tab), max(dT_tab), N);
     h_eq  = interpolacja_liniowa(dT_tab, h_tab, dT_eq);
 
-    %% ======= 2. Trzy modele h(ΔT) =======
+    %%  2. Trzy modele h(ΔT) 
 
     % MNK
     stopien = 5;
@@ -24,7 +24,7 @@ function projekt_chlodzenie_cz3
     S_spline = funkcje_sklejane(dT_eq, h_eq, alpha, beta);
     fh_spline = @(dT) S_spline.eval(dT);
 
-    %% ======= 3. Parametry materiałowe =======
+    %%  3. Parametry materiałowe 
     parametry.A  = 0.0109;
     parametry.mb = 0.2;
     parametry.cb = 3.85;
@@ -33,7 +33,7 @@ function projekt_chlodzenie_cz3
     t0 = 0;
     h = 0.001;
 
-    %% ======= 4. Tabela pomiarowa - wybór przypadków =======
+    %%  4. Tabela pomiarowa - wybór przypadków 
     dane = pomiary();
     
     % Wybieramy reprezentatywne przypadki: 1, 3, 7, 10
@@ -41,7 +41,7 @@ function projekt_chlodzenie_cz3
     P = dane(idx,:);
     n_przypadkow = length(idx);
 
-    %% ======= 5. Symulacje i analiza =======
+    %%  5. Symulacje i analiza 
     
     % Tablice na wyniki
     bledy_Tb = zeros(n_przypadkow, 3); % [MNK, Lagrange, Splajn]
