@@ -1,0 +1,26 @@
+\subsection*{Część 2.}
+
+W części drugiej przeprowadzono porównanie trzech metod wyznaczania funkcji $h(\Delta T)$: interpolacji Lagrange'a, aproksymacji metodą najmniejszych kwadratów (MNK) oraz funkcji sklejanych trzeciego stopnia. Zgodnie z wymaganiami zadania, dla interpolacji i splajnu wygenerowano równoodległe węzły w przedziale danych pomiarowych, a wartości $h$ w tych punktach wyznaczono metodą Lagrange'a.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.33\textheight]{porownanie aproksymacji.png}
+    \caption{Porównanie różnych metod aproksymacji}
+    \label{fig:moj_rysunek}
+\end{figure}
+
+Interpolacja Lagrange'a pozwoliła odtworzyć wartości w nowych węzłach, jednak silnie ujawniła się jej główna wada, czyli efekt Rungego, który powoduje wyraźne oscylacje wielomianu pomiędzy punktami. Zjawisko to znacząco obniża stabilność metody i dyskwalifikuje ją z praktycznego zastosowania w dalszych obliczeniach.
+
+Funkcje sklejane trzeciego stopnia również oparto na równoodległych danych generowanych metodą Lagrange'a, przez co splajn przejął część niekorzystnych efektów związanych z oscylacjami i zaburzeniami w wygenerowanych punktach. Chociaż splajn zapewnia gładkość i ciągłość pochodnych, jego działanie na sztucznie wygenerowanych danych zmniejsza wiarygodność otrzymanej funkcji.
+
+Najbardziej stabilną metodą okazała się aproksymacja MNK. Wielomian 5.\ stopnia dobrze odwzorował trend danych pomiarowych, zapewniając gładkość przebiegu oraz odporność na szum pomiarowy. Brak oscylacji charakterystycznych dla interpolacji sprawia, że metoda MNK dostarcza wiarygodnej funkcji $h(\Delta T)$, odpowiedniej do dalszego wykorzystania w modelu chłodzenia.
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.33\textheight]{symulacja ukladu nieliniowego.png}
+    \caption{Przebiegi temperatur dla układu nieliniowego}
+    \label{fig:moj_rysunek}
+\end{figure}
+
+Wykorzystanie uzyskanej nieliniowej funkcji $h(\Delta T)$ w symulacji procesu chłodzenia pozwoliło uzyskać fizycznie poprawny przebieg temperatur. Temperatura pręta ulega szybkiemu spadkowi, podczas gdy temperatura oleju wzrasta do poziomu równowagi, po czym układ stabilizuje się. Model zachował stabilność numeryczną w całym analizowanym przedziale czasu, co potwierdza zasadność zastosowania metody MNK jako podstawy nieliniowego opisu wymiany ciepła.

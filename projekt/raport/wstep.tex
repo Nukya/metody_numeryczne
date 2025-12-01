@@ -1,0 +1,25 @@
+\subsection*{Wstęp teoretyczny}
+W projekcie analizujemy proces chłodzenia rozgrzanego metalowego pręta, który zostaje zanurzony w oleju chłodzącym. Gdy pręt trafia do dużo chłodniejszego oleju, zaczyna oddawać mu ciepło. Powoduje to stopniowy spadek temperatury pręta oraz jednoczesny wzrost temperatury cieczy. W modelu zakładamy, że w krótkim czasie oddawanie ciepła do otoczenia jest pomijalne, dlatego traktujemy olej jako układ izolowany od środowiska.
+
+Dodatkowym uproszczeniem jest przyjęcie, że zarówno pręt, jak i olej mają w danej chwili jednakową temperaturę w całej swojej objętości. Dzięki temu opisywany proces sprowadza się do wymiany ciepła jedynie na powierzchni styku pręta z cieczą. Szybkość tej wymiany zależy od kilku parametrów: 
+\begin{itemize}
+    \item powierzchni pręta, 
+    \item współczynnika wymiany ciepła h, 
+    \item masy,
+    \item pojemności cieplnej pręta i oleju.
+\end{itemize}
+
+Tak opisany układ można przedstawić za pomocą dwóch równań różniczkowych, które określają, jak zmieniają się temperatury obu elementów w czasie. 
+\begin{center}
+    $\dfrac{m_b c_b}{hA}\dfrac{dT_b}{dt} + T_b = T_w$ \\
+    \vspace{0.2cm}
+    
+    $\dfrac{m_w c_w}{hA}\dfrac{dT_w}{dt} + T_w = T_b$
+
+\end{center}
+
+Symulator tworzony w ramach projektu rozwiązuje te równania numerycznie, krok po kroku.
+
+W kolejnej części projkeut współczynnik $h$ nie jest już wartością stałą, lecz zależy od różnicy temperatur między prętem a olejem. Oznacza to, że intensywność przekazywania ciepła zmienia się w trakcie chłodzenia. Ponieważ współczynnik ten jest znany tylko w postaci danych pomiarowych, konieczne jest jego przybliżenie metodami interpolacji lub aproksymacji, tak aby można było wykorzystać go w symulacjach.
+
+Model ma praktyczne znaczenie technologiczne, ponieważ pozwala ocenić, jak szybko pręt może zostać schłodzony i jak dużo oleju jest do tego potrzebne. Dzięki temu można później projektować odpowiednią wielkość zbiorników i analizować wymagania procesu produkcyjnego.
