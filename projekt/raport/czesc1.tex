@@ -1,7 +1,7 @@
 \section{część 1. projektu}
 
 
-W pierwszej części projektu opracowano kompletny symulator procesu chłodzenia pręta zanurzonego w oleju, oparty na układzie równań różniczkowych opisujących bilans energii pomiędzy prętem a cieczą chłodzącą. Do całkowania równań zastosowano metodę Eulera oraz metodę ulepszonego Eulera (Heuna), a otrzymane trajektorie porównano z rozwiązaniem referencyjnym wyznaczonym za pomocą solvera \texttt{ode45}.
+W pierwszej części projektu opracowano kompletny symulator procesu chłodzenia pręta zanurzonego w oleju, oparty na układzie równań różniczkowych opisujących bilans energii pomiędzy prętem a cieczą chłodzącą. Do całkowania równań zastosowano metodę Eulera oraz metodę ulepszonego Eulera, a otrzymane trajektorie porównano z rozwiązaniem referencyjnym wyznaczonym za pomocą solvera \texttt{ode45}.
 
 \begin{figure}[H]
     \centering
@@ -19,7 +19,7 @@ Analiza numeryczna wykazała, że metoda Eulera jest silnie wrażliwa na krok cz
 
 \end{figure}
 
-Metoda ulepszonego Eulera (Heuna) okazała się znacznie stabilniejsza i przy kroku \mbox{$h=0{,}001$} praktycznie pokrywała się z wynikami \texttt{ode45}. Oznacza to, że ulepszony Euler zapewnia wystarczającą dokładność i stabilność przy niewielkim koszcie obliczeniowym, co czyni go odpowiednim narzędziem do dalszych analiz.
+Metoda ulepszonego Eulera okazała się znacznie stabilniejsza i przy kroku \mbox{$h=0{,}001$} praktycznie pokrywała się z wynikami \texttt{ode45}. Oznacza to, że ulepszony Euler zapewnia wystarczającą dokładność i stabilność przy niewielkim koszcie obliczeniowym, co czyni go odpowiednim narzędziem do dalszych analiz.
 
 \begin{figure}[H]
     \centering
@@ -32,8 +32,6 @@ Uzyskane przebiegi temperatur pręta i oleju są fizycznie poprawne: obserwuje s
 
 Istotnym etapem była weryfikacja modelu na podstawie danych pomiarowych. Porównanie wyników symulacji z dziesięcioma przypadkami eksperymentalnymi wykazało bardzo dobrą zgodność obliczeń z rzeczywistymi pomiarami. Różnice końcowych temperatur mieściły się w zakresie około $0{,}03{-}2^\circ\mathrm{C}$ dla pręta oraz $0{,}07{-}1{,}9^\circ\mathrm{C}$ dla oleju, co jest mniejsze lub porównywalne z typowym błędem urządzeń pomiarowych. Nieco większe rozbieżności pojawiały się jedynie w przypadkach o bardzo wysokiej temperaturze początkowej i krótkim czasie obserwacji, gdzie rzeczywista wymiana ciepła może być bardziej dynamiczna niż zakłada liniowy model.
 
-\newpage
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{przebiegi dla roznych zestawow danych.png}
@@ -44,7 +42,7 @@ Istotnym etapem była weryfikacja modelu na podstawie danych pomiarowych. Porów
 
 Wszystkie dziesięć wykresów przedstawia typowy, wykładniczy przebieg chłodzenia: temperatura pręta gwałtownie spada na początku procesu, natomiast temperatura oleju rośnie powoli dzięki jego dużej pojemności cieplnej. Różnice między zestawami wynikają głównie z odmiennych warunków początkowych oraz z masy oleju, która w największym stopniu wpływa na intensywność wymiany ciepła. Pomimo tych zmian, kształt krzywych pozostaje taki sam. Przebiegi są monotoniczne, stabilne i zgodne z fizycznym opisem zjawiska, co potwierdza poprawność modelu.
 
-Dodatkowa analiza wrażliwości wykazała, że zmiana temperatury początkowej pręta o $\pm 10^\circ\mathrm{C}$ wpływała na wynik jedynie nieznacznie (około $\pm 0{,}7^\circ\mathrm{C}$), natomiast zmiana temperatury początkowej oleju o $\pm 10^\circ\mathrm{C}$ miała znacznie większy efekt (około $\pm 9{,}3^\circ\mathrm{C}$), co wynika z roli oleju jako głównego bufora cieplnego. Najbardziej wrażliwym parametrem okazała się masa oleju: jej zmiana o $\pm 5\%$ powodowała zmianę końcowej temperatury pręta o około $3{,}6{-}3{,}9^\circ\mathrm{C}$.
+Dodatkowa analiza wrażliwości wykazała, że zmiana temperatury początkowej pręta o~$\pm 10^\circ\mathrm{C}$ wpływała na wynik jedynie nieznacznie (około $\pm 0{,}7^\circ\mathrm{C}$), natomiast zmiana temperatury początkowej oleju o $\pm 10^\circ\mathrm{C}$ miała znacznie większy efekt (około $\pm 9{,}3^\circ\mathrm{C}$), co~wynika z roli oleju jako głównego bufora cieplnego. Najbardziej wrażliwym parametrem okazała się masa oleju: jej zmiana o $\pm 5\%$ powodowała zmianę końcowej temperatury pręta o około $3{,}6{-}3{,}9^\circ\mathrm{C}$.
 
 Podsumowując, opracowany symulator jest stabilny, dokładny i zgodny z pomiarami we wszystkich analizowanych przypadkach. Ewentualne różnice między symulacją a pomiarami wynikają przede wszystkim z uproszczeń modelu fizycznego, a nie z ograniczeń numerycznych.
 

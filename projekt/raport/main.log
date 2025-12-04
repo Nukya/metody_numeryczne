@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.1)  4 DEC 2025 00:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.1)  4 DEC 2025 02:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -370,185 +370,124 @@ LaTeX Font Info:    External font `plex10' loaded for size
 (Font)              <8> on input line 14.
 LaTeX Font Info:    External font `plex10' loaded for size
 (Font)              <6> on input line 14.
-) [1
+) (czesc1.tex
+[1
 
 {C:/Users/kondr/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{D:/texstudio/
 mikitex/fonts/enc/dvips/pl/plrm.enc}{D:/texstudio/mikitex/fonts/enc/dvips/pl/pl
 mi.enc}]
-[2] (czesc1.tex
 LaTeX Font Info:    Trying to load font information for OT4+cmtt on input line 
 4.
  (D:\texstudio\mikitex\tex/latex/polski\ot4cmtt.fd
 File: ot4cmtt.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-
-LaTeX Warning: File `wplyw kroku na rozwiazanie - euler.png' not found on input
- line 8.
-
-
-! Package pdftex.def Error: File `wplyw kroku na rozwiazanie - euler.png' not f
-ound: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.8 ...ht]{wplyw kroku na rozwiazanie - euler.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `wplyw kroku na rozwiazanie - euler ulepszony.png' not foun
-d on input line 17.
-
-
-! Package pdftex.def Error: File `wplyw kroku na rozwiazanie - euler ulepszony.
-png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.17 ...roku na rozwiazanie - euler ulepszony.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[3{D:/texstudio/mikitex/fonts/enc/dvips/pl/pltt.enc}]
-
-LaTeX Warning: File `przebieg temperatur dla roznych metod rozwiazywania rownan
- rozniczkowych.png' not found on input line 26.
-
-
-! Package pdftex.def Error: File `przebieg temperatur dla roznych metod rozwiaz
-ywania rownan rozniczkowych.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.26 ...od rozwiazywania rownan rozniczkowych.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[4] [5{D:/texstudio/mikitex/fonts/enc/dvips/pl/plms.enc}]
-
-LaTeX Warning: File `przebiegi dla roznych zestawow danych.png' not found on in
-put line 39.
-
-
-! Package pdftex.def Error: File `przebiegi dla roznych zestawow danych.png' no
-t found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.39 ...przebiegi dla roznych zestawow danych.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[6]) [7] (czesc2b.tex
-
-LaTeX Warning: File `cz2/mnk.png' not found on input line 11.
-
-
-! Package pdftex.def Error: File `cz2/mnk.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.11 ...phics[height=0.33\textheight]{cz2/mnk.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `cz2/lag.png' not found on input line 25.
-
-
-! Package pdftex.def Error: File `cz2/lag.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.25 ...phics[height=0.33\textheight]{cz2/lag.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[8]
-Overfull \hbox (2.39275pt too wide) in paragraph at lines 32--33
-[]\OT4/cmr/m/n/12 Uzyskane bª¦-dy: ±red-ni bª¡d bez-wzgl¦d-ny $1[]18 []$ $(0[]7
-1%)\OML/plm/m/it/12 ;$ \OT4/cmr/m/n/12 mak-sy-mal-ny $3[]59 []\OML/plm/m/it/12 
-:$
- []
-
-[9]
-
-LaTeX Warning: File `cz2/splajn.png' not found on input line 42.
-
-
-! Package pdftex.def Error: File `cz2/splajn.png' not found: using draft settin
-g.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.42 ...cs[height=0.33\textheight]{cz2/splajn.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-)
-Overfull \hbox (33.48175pt too wide) in paragraph at lines 69--31
-\OT4/cmr/m/n/12 prze-two-rze-nia da-nych. Wy-ge-ne-ro-wa-no 12 rów-no-odle-gªyc
-h punk-tów w prze-dzia-le $[\OMS/plsy/m/n/12 ^^@\OT4/cmr/m/n/12 1500\OML/plm/m/
-it/12 ; \OT4/cmr/m/n/12 2000][]$C,
- []
-
-[10] (czesc3.tex [11] [12]
-Overfull \hbox (9.14613pt too wide) in paragraph at lines 53--54
+<wplyw kroku na rozwiazanie - euler.png, id=11, 1049.8422pt x 633.567pt>
+File: wplyw kroku na rozwiazanie - euler.png Graphic file (type png)
+<use wplyw kroku na rozwiazanie - euler.png>
+Package pdftex.def Info: wplyw kroku na rozwiazanie - euler.png  used on input 
+line 8.
+(pdftex.def)             Requested size: 384.28653pt x 231.9197pt.
+<wplyw kroku na rozwiazanie - euler ulepszony.png, id=12, 1049.8422pt x 633.567
+pt>
+File: wplyw kroku na rozwiazanie - euler ulepszony.png Graphic file (type png)
+<use wplyw kroku na rozwiazanie - euler ulepszony.png>
+Package pdftex.def Info: wplyw kroku na rozwiazanie - euler ulepszony.png  used
+ on input line 17.
+(pdftex.def)             Requested size: 384.28653pt x 231.9197pt.
+ [2{D:/texstudio/mikitex/fonts/enc/dvips/pl/pltt.enc} <./wplyw kroku na rozwiaz
+anie - euler.png (PNG copy)>]
+<przebieg temperatur dla roznych metod rozwiazywania rownan rozniczkowych.png, 
+id=17, 1049.8422pt x 633.567pt>
+File: przebieg temperatur dla roznych metod rozwiazywania rownan rozniczkowych.
+png Graphic file (type png)
+<use przebieg temperatur dla roznych metod rozwiazywania rownan rozniczkowych.p
+ng>
+Package pdftex.def Info: przebieg temperatur dla roznych metod rozwiazywania ro
+wnan rozniczkowych.png  used on input line 26.
+(pdftex.def)             Requested size: 384.28653pt x 231.9197pt.
+ [3 <./wplyw kroku na rozwiazanie - euler ulepszony.png (PNG copy)> <./przebieg
+ temperatur dla roznych metod rozwiazywania rownan rozniczkowych.png (PNG copy)
+>]
+<przebiegi dla roznych zestawow danych.png, id=21, 1049.8422pt x 633.567pt>
+File: przebiegi dla roznych zestawow danych.png Graphic file (type png)
+<use przebiegi dla roznych zestawow danych.png>
+Package pdftex.def Info: przebiegi dla roznych zestawow danych.png  used on inp
+ut line 37.
+(pdftex.def)             Requested size: 455.24411pt x 274.73901pt.
+) (czesc2b.tex [4{D:/texstudio/mikitex/fonts/enc/dvips/pl/plms.enc} <./przebieg
+i dla roznych zestawow danych.png (PNG copy)>]
+<Aproksymacja MNK.png, id=27, 1049.8422pt x 633.567pt>
+File: Aproksymacja MNK.png Graphic file (type png)
+<use Aproksymacja MNK.png>
+Package pdftex.def Info: Aproksymacja MNK.png  used on input line 11.
+(pdftex.def)             Requested size: 384.28653pt x 231.9197pt.
+<Interpolacja Lagrangea.png, id=28, 1049.8422pt x 633.567pt>
+File: Interpolacja Lagrangea.png Graphic file (type png)
+<use Interpolacja Lagrangea.png>
+Package pdftex.def Info: Interpolacja Lagrangea.png  used on input line 23.
+(pdftex.def)             Requested size: 384.28653pt x 231.9197pt.
+ [5 <./Aproksymacja MNK.png (PNG copy)>] [6 <./Interpolacja Lagrangea.png (PNG 
+copy)>]
+<Splajn kubiczny.png, id=36, 1049.8422pt x 633.567pt>
+File: Splajn kubiczny.png Graphic file (type png)
+<use Splajn kubiczny.png>
+Package pdftex.def Info: Splajn kubiczny.png  used on input line 38.
+(pdftex.def)             Requested size: 384.28653pt x 231.9197pt.
+<PorÃ³wnanie metod.png, id=37, 1049.8422pt x 633.567pt>
+File: PorÃ³wnanie metod.png Graphic file (type png)
+<use PorÃ³wnanie metod.png>
+Package pdftex.def Info: PorÃ³wnanie metod.png  used on input line 48.
+(pdftex.def)             Requested size: 384.28653pt x 231.9197pt.
+ [7 <./Splajn kubiczny.png (PNG copy)>]
+<Temperatura preta.png, id=42, 1049.8422pt x 633.567pt>
+File: Temperatura preta.png Graphic file (type png)
+<use Temperatura preta.png>
+Package pdftex.def Info: Temperatura preta.png  used on input line 74.
+(pdftex.def)             Requested size: 384.28653pt x 231.9197pt.
+ [8 <./PorÃ³wnanie metod.png (PNG copy)>]
+<Temperatura cieczy chlodzacej.png, id=46, 1049.8422pt x 633.567pt>
+File: Temperatura cieczy chlodzacej.png Graphic file (type png)
+<use Temperatura cieczy chlodzacej.png>
+Package pdftex.def Info: Temperatura cieczy chlodzacej.png  used on input line 
+80.
+(pdftex.def)             Requested size: 384.28653pt x 231.9197pt.
+ [9 <./Temperatura preta.png (PNG copy)> <./Temperatura cieczy chlodzacej.png (
+PNG copy)>]) (czesc3.tex [10] [11]
+Overfull \hbox (9.14613pt too wide) in paragraph at lines 52--53
 []\OT4/cmr/m/n/12 wielomian stop-nia 5 jest wy-star-cza-j¡-co ela-stycz-ny, by 
 od-wzo-ro-wa¢ nie-li-nio-wo±¢ $\OML/plm/m/it/12 h\OT4/cmr/m/n/12 (^^A\OML/plm/m
 /it/12 T\OT4/cmr/m/n/12 )$,
  []
 
-[13]) [14] (czesc4.tex [15] [16]) [17] (podsumowanie.tex) [18] (main.aux)
+[12]) (czesc4.tex [13] [14]) (podsumowanie.tex [15]) [16] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-06>
  ***********
+ )
+(\end occurred inside a group at level 1)
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+### simple group (level 1) entered at line 47 ({)
+### bottom level 
 Here is how much of TeX's memory you used:
- 3974 strings out of 467870
- 64134 string characters out of 5429899
+ 3834 strings out of 467870
+ 57717 string characters out of 5429899
  470206 words of memory out of 5000000
- 32773 multiletter control sequences out of 15000+600000
+ 32633 multiletter control sequences out of 15000+600000
  640789 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,10n,65p,819b,311s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\kondr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
-1200.pk><D:/texstudio/mikitex/fonts/type1/public/pl/plbx12.pfb><D:/texstudio/mi
-kitex/fonts/type1/public/pl/plmi12.pfb><D:/texstudio/mikitex/fonts/type1/public
-/pl/plmi8.pfb><D:/texstudio/mikitex/fonts/type1/public/pl/plr12.pfb><D:/texstud
-io/mikitex/fonts/type1/public/pl/plr17.pfb><D:/texstudio/mikitex/fonts/type1/pu
-blic/pl/plr8.pfb><D:/texstudio/mikitex/fonts/type1/public/pl/plsy10.pfb><D:/tex
-studio/mikitex/fonts/type1/public/pl/plsy8.pfb><D:/texstudio/mikitex/fonts/type
-1/public/pl/pltt12.pfb>
-Output written on main.pdf (18 pages, 118437 bytes).
+ 57i,10n,65p,819b,313s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\kondr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
+ec/dpi600\tcrm1200.pk><D:/texstudio/mikitex/fonts/type1/public/pl/plbx12.pfb><D
+:/texstudio/mikitex/fonts/type1/public/pl/plmi12.pfb><D:/texstudio/mikitex/font
+s/type1/public/pl/plmi8.pfb><D:/texstudio/mikitex/fonts/type1/public/pl/plr12.p
+fb><D:/texstudio/mikitex/fonts/type1/public/pl/plr17.pfb><D:/texstudio/mikitex/
+fonts/type1/public/pl/plr8.pfb><D:/texstudio/mikitex/fonts/type1/public/pl/plsy
+10.pfb><D:/texstudio/mikitex/fonts/type1/public/pl/plsy8.pfb><D:/texstudio/miki
+tex/fonts/type1/public/pl/pltt12.pfb>
+Output written on main.pdf (16 pages, 894346 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
+ 119 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

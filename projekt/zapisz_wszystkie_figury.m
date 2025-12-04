@@ -26,7 +26,7 @@ function zapisz_wszystkie_figury()
             % Usuń niedozwolone znaki z nazwy
             figName = regexprep(figName, '[^\w\s-]', '');
             figName = strtrim(figName);
-            filename = sprintf('figura_%d_%s.png', figNum, figName);
+            filename = sprintf('%s.png', figName);
         end
         
         % Zapisz figurę
