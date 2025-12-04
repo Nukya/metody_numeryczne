@@ -7,7 +7,7 @@ function projekt_chlodzenie_cz3
     % Równoodległe węzły + h w tych punktach
     N = numel(dT_tab);
     dT_eq = linspace(min(dT_tab), max(dT_tab), N);
-    h_eq  = wezly_rownoodlegle(dT_tab, h_tab, dT_eq);
+    h_eq  = interpolacja_liniowa(dT_tab, h_tab, dT_eq);
 
     %%  2. Trzy modele h(ΔT) 
 
@@ -48,8 +48,6 @@ function projekt_chlodzenie_cz3
     bledy_Tw = zeros(n_przypadkow, 3);
     bledy_Tb_wzgl = zeros(n_przypadkow, 3);
     bledy_Tw_wzgl = zeros(n_przypadkow, 3);
-
-    fprintf('CZĘŚĆ 3: ANALIZA METOD APROKSYMACJI h(ΔT)\n');
 
     for k = 1:n_przypadkow
         Tb0 = P(k,1);
@@ -94,7 +92,7 @@ function projekt_chlodzenie_cz3
             Tb_SPL, Tw_SPL, bledy_Tb(k,3), bledy_Tw(k,3));
         
         %% Wykresy dla każdego przypadku
-        figure('Name', sprintf('porownanie metod - przypadek %d', idx(k)));
+        figure;
         
         % Tb(t)
         subplot(2,1,1);
@@ -119,44 +117,5 @@ function projekt_chlodzenie_cz3
         legend('Location','best');
     end
 
-    %% 6. ANALIZA PORÓWNAWCZA - Podsumowanie
-    fprintf('PODSUMOWANIE BŁĘDÓW\n');
-    
-    % Błędy bezwzględne średnie
-    bledy_Tb_mean = mean(abs(bledy_Tb), 1);
-    bledy_Tw_mean = mean(abs(bledy_Tw), 1);
-    
-    % Błędy maksymalne
-    bledy_Tb_max = max(abs(bledy_Tb), [], 1);
-    bledy_Tw_max = max(abs(bledy_Tw), [], 1);
-    
-    % Błędy względne średnie
-    bledy_Tb_wzgl_mean = mean(bledy_Tb_wzgl, 1);
-    bledy_Tw_wzgl_mean = mean(bledy_Tw_wzgl, 1);
-    
-    fprintf('\nŚrednie błędy bezwzględne temperatury pręta Tb:\n');
-    fprintf('  MNK:      %.2f°C\n', bledy_Tb_mean(1));
-    fprintf('  Lagrange: %.2f°C\n', bledy_Tb_mean(2));
-    fprintf('  Splajn:   %.2f°C\n', bledy_Tb_mean(3));
-    
-    fprintf('\nMaksymalne błędy bezwzględne temperatury pręta Tb:\n');
-    fprintf('  MNK:      %.2f°C\n', bledy_Tb_max(1));
-    fprintf('  Lagrange: %.2f°C\n', bledy_Tb_max(2));
-    fprintf('  Splajn:   %.2f°C\n', bledy_Tb_max(3));
-    
-    fprintf('\nŚrednie błędy względne temperatury pręta Tb:\n');
-    fprintf('  MNK:      %.2f%%\n', bledy_Tb_wzgl_mean(1));
-    fprintf('  Lagrange: %.2f%%\n', bledy_Tb_wzgl_mean(2));
-    fprintf('  Splajn:   %.2f%%\n', bledy_Tb_wzgl_mean(3));
-    
-    fprintf('\nŚrednie błędy bezwzględne temperatury oleju Tw:\n');
-    fprintf('  MNK:      %.2f°C\n', bledy_Tw_mean(1));
-    fprintf('  Lagrange: %.2f°C\n', bledy_Tw_mean(2));
-    fprintf('  Splajn:   %.2f°C\n', bledy_Tw_mean(3));
-    
-    fprintf('\nŚrednie błędy względne temperatury oleju Tw:\n');
-    fprintf('  MNK:      %.2f%%\n', bledy_Tw_wzgl_mean(1));
-    fprintf('  Lagrange: %.2f%%\n', bledy_Tw_wzgl_mean(2));
-    fprintf('  Splajn:   %.2f%%\n', bledy_Tw_wzgl_mean(3));
     
 end

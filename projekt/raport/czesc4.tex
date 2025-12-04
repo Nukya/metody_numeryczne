@@ -1,8 +1,8 @@
-\section{część 4. projektu}
+\section{Część 4. projektu}
 
 \subsection{Cel badawczy}
 
-Celem czwartej części projektu było wyznaczenie minimalnej masy oleju chłodzącego, która pozwala schłodzić pręt do temperatury $125\degree$C w czasie $t=0{,}7$ s. W tym celu wykorzystano pełny, nieliniowy model chłodzenia wraz z aproksymowaną funkcją współczynnika wnikania ciepła $h(\Delta T)$ otrzymaną z funkcji sklejanych kubicznych. Rozwiązanie równania $T_b(m_w, 0{,}7\ \mathrm{s}) = 125\degree\mathrm{C}$ przeprowadzono metodą Newtona--Raphsona.
+Celem czwartej części projektu było wyznaczenie minimalnej masy oleju chłodzącego, która pozwala schłodzić pręt do temperatury $125\degree$C w czasie $t=0{,}7$ s. W tym celu wykorzystano pełny, nieliniowy model chłodzenia wraz z aproksymowaną funkcją współczynnika wnikania ciepła $h(\Delta T)$ otrzymaną metodą najmniejszych kwadratów (MNK stopnia 5), wybraną jako optymalna w Części~3. Rozwiązanie równania $T_b(m_w, 0{,}7\ \mathrm{s}) = 125\degree\mathrm{C}$ przeprowadzono metodą Newtona--Raphsona.
 
 \subsection{Przebieg eksperymentu}
 
@@ -15,13 +15,13 @@ Aktualizacja wartości masy przebiegała zgodnie ze wzorem:
 m_w^{(i+1)} = m_w^{(i)} - 
 \frac{T_b(m_w^{(i)}) - 125}{T_b'(m_w^{(i)})}.
 \]
-Jako punkt startowy przyjęto $m_w^{(0)} = 2{,}0$ kg, a wartość różnicową $\Delta m_w = 0{,}02$ kg. Do całkowania równań różniczkowych wykorzystano ulepszoną metodę Eulera.
+Jako punkt startowy przyjęto $m_w^{(0)} = 2{,}0$ kg, a wartość różnicową $\Delta m_w = 0{,}02$ kg. Do całkowania równań różniczkowych wykorzystano ulepszoną metodę Eulera z krokiem $h=0{,}001$ s. Parametry materiałowe w tej części projektu różnią się od wykorzystanych w~Części~1: masa pręta wynosi $m_b=0{,}25$ kg, a pojemność cieplna $c_b=0{,}29$ kJ/(kg$\cdot$K).
 
 \subsection{Analiza wyników}
 
 \subsubsection{Przebieg iteracji Newtona}
 
-W Tabeli~\ref{tab:newton} przedstawiono pełny przebieg iteracji metody Newtona--Raphsona. W pierwszych krokach obserwowano niestabilność spowodowaną dużym oddaleniem punktu startowego od właściwego rozwiązania. W kolejnych iteracjach algorytm szybko zbiegał do obszaru stabilnego i osiągnął wysoką dokładność końcową.
+W Tabeli~\ref{tab:newton} przedstawiono pełny przebieg iteracji metody Newtona--Raphsona. W pierwszych trzech iteracjach algorytm napotykał na trudności numeryczne związane z dużym oddaleniem punktu startowego od rozwiązania, co prowadziło do ujemnych wartości masy oleju wymagających korekty (przycięcie wartości do połowy poprzedniej). Począwszy od iteracji czwartej, algorytm wszedł w obszar stabilny i osiągnął bardzo szybką zbieżność. Już w~iteracji dziewiątej błąd temperatury był mniejszy niż $0{,}001\degree$C.
 
 \begin{table}[H]
 	\centering
@@ -50,11 +50,29 @@ W Tabeli~\ref{tab:newton} przedstawiono pełny przebieg iteracji metody Newtona-
 
 Na podstawie uzyskanych wyników wyznaczono wartość:
 \begin{displaymath}
-	m_w \approx 0{,}1864\ \text{kg}
+	m_w \approx 0{,}1864\ \text{kg}.
 \end{displaymath}
 
+Finalny błąd temperatury wyniósł jedynie $0{,}00035\degree$C, co potwierdza wysoką dokładność algorytmu i prawidłową implementację metody numerycznej.
+
+\subsubsection{Interpretacja wyniku}
+
+Otrzymana wartość $m_w \approx 0{,}19$ kg jest znacząco mniejsza od typowych mas oleju występujących w eksperymentach pomiarowych z~Części~1 (gdzie $m_w=2{,}5$ kg lub więcej). Wynika to z kilku czynników:
+
+\begin{enumerate}
+	\item Czas $t=0{,}7$ s jest bardzo krótki w~porównaniu do czasów eksperymentalnych ($t=2{-}5$ s), co oznacza, że wymiana ciepła odbywa się w~początkowej, najbardziej intensywnej fazie procesu.
+	
+	\item Przyjęto $m_b=0{,}25$ kg oraz $c_b=0{,}29$ kJ/(kg$\cdot$K), co odpowiada mniejszej pojemności cieplnej pręta ($m_b c_b \approx 0{,}0725$ kJ/K) w~porównaniu do poprzednich części projektu ($m_b c_b \approx 0{,}77$ kJ/K przy $m_b=0{,}2$ kg i~$c_b=3{,}85$ kJ/(kg$\cdot$K)). Pręt o~mniejszej pojemności cieplnej oddaje mniej energii, co wymaga proporcjonalnie mniejszej masy chłodziwa.
+	
+	\item Zadana temperatura $T_b=125\degree$C jest stosunkowo wysoka, co oznacza, że pręt nie musi zostać schłodzony całkowicie.
+\end{enumerate}
+
+Bardzo duża wartość bezwzględna pochodnej $|T'_b(m_w)| \approx 450\degree$C/kg wskazuje na wysoką wrażliwość rozwiązania na masę oleju. Niewielka zmiana $m_w$ o~kilka procent prowadzi do znaczących zmian temperatury końcowej, co oznacza, że w~praktyce konieczne byłoby precyzyjne dozowanie ilości chłodziwa.
 
 \subsection{Wnioski końcowe}
 
-Metoda Newtona-Raphsona okazała się skuteczną i szybką metodą rozwiązywania równania odwrotnego analizowanego w tej części projektu. Po kilku iteracjach osiągnięto wysoką dokładność rozwiązania. Jednocześnie zauważono, że model jest bardzo czuły na wartość masy oleju, co przejawia się dużą wartością pochodnej $T'_b(m_w)$ w pobliżu rozwiązania. Ponadto, uzyskany wynik leży daleko poza zakresem danych pomiarowych, co ogranicza jego interpretację fizyczną. W praktycznych zastosowaniach inżynierskich należałoby narzucić ograniczenia na minimalną masę chłodziwa tak, aby obliczenia były prowadzone wyłącznie w obszarze popartym eksperymentalnie.
+Metoda Newtona--Raphsona okazała się skuteczną i~szybką metodą rozwiązywania równania odwrotnego rozpatrywanego w~tej części projektu. Po początkowych trudnościach numerycznych związanych z~wyborem punktu startowego, algorytm bardzo szybko zbiegł do rozwiązania. Od iteracji piątej błąd zmniejszał się z~prędkością kwadratową, typową dla metody Newtona.
 
+Uzyskany wynik $m_w \approx 0{,}19$ kg jest wiarygodny z~punktu widzenia fizyki procesu i~przyjętych parametrów materiałowych. Mała wartość masy oleju wynika przede wszystkim ze znacząco zmniejszonej pojemności cieplnej pręta oraz bardzo krótkiego czasu chłodzenia. Model wykazuje dużą wrażliwość na wartość $m_w$, co w~praktyce oznacza konieczność precyzyjnego sterowania masą chłodziwa w~rzeczywistych zastosowaniach technologicznych.
+
+Warto podkreślić, że analiza przeprowadzona w~tej części projektu stanowi przykład praktycznego zastosowania metod numerycznych do~rozwiązywania problemów optymalizacyjnych w~inżynierii procesowej.
