@@ -34,7 +34,7 @@ function projekt_chlodzenie_cz1
     [czas45, rozw45] = ode45(odefun, przedzialCzasu, stanPoczatkowy);
     
     %% 4. Wykresy Tb(t), Tw(t) – porównanie metod
-    figure;
+    figure('Name', 'przebieg temperatur dla roznych metod rozwiazywania rownan rozniczkowych');
     subplot(2,1,1); 
     hold on; 
     grid on;
@@ -60,7 +60,7 @@ function projekt_chlodzenie_cz1
     %% 5. Analiza wrażliwości na krok h (EULER vs ode45)
     krokiTestowe = [0.2, 0.1, 0.001];
     
-    figure; 
+    figure('Name', 'wplyw kroku na rozwiazanie - euler'); 
     hold on; 
     grid on;
     for krokTestu = krokiTestowe
@@ -76,7 +76,7 @@ function projekt_chlodzenie_cz1
         legend('Location','best');
     
     %% 6. Analiza wrażliwości na krok h (ULEPSZONY EULER vs ode45)
-    figure; 
+    figure('Name', 'wplyw kroku na rozwiazanie - euler ulepszony'); 
     hold on; 
     grid on;
     for krokTestu = krokiTestowe
@@ -113,7 +113,7 @@ function projekt_chlodzenie_cz1
     Tw_model = zeros(10,1);
     dane = zeros(10,7);   % [Tb_mod Tb_exp Tw_mod Tw_exp ErrTb ErrTw]
     
-    figure;
+    figure('Name', 'przebiegi dla roznych zestawow danych');
     t = tiledlayout(5,2);
     t.TileSpacing = 'compact';
     t.Padding = 'compact';
@@ -204,5 +204,5 @@ function projekt_chlodzenie_cz1
         'VariableNames', {'Błąd', 'Tb_koniec', 'DeltaTb'});
     
     disp(wynikiWrazliwosci);
-
+    
 end

@@ -1,0 +1,22 @@
+\section{Podsumowanie i wnioski końcowe}
+
+W ramach projektu opracowano kompletny model numeryczny procesu chłodzenia metalowego pręta w oleju, obejmujący scenariusz liniowy (stały współczynnik $h$) oraz nieliniowy (zmienny współczynnik $h(\Delta T)$). Model został zweryfikowany eksperymentalnie i wykorzystany do optymalizacji parametrów technologicznych.
+
+Metoda ulepszonego Eulera z krokiem $h=0{,}001$ s zapewniła wyniki niemal identyczne z rozwiązaniem referencyjnym \texttt{ode45}. Porównanie z dziesięcioma przypadkami eksperymentalnymi wykazało błędy nieprzekraczające $2\degree$C dla pręta oraz $1{,}9\degree$C dla oleju, co potwierdza poprawność implementacji. Analiza wrażliwości wykazała, że kluczowymi parametrami są masa oleju (zmiana o $\pm5\%$ wpływa na wynik o $\pm3{,}8\degree$C) oraz temperatura początkowa oleju (zmiana o $\pm10\degree$C powoduje zmianę o $\pm9{,}3\degree$C).
+
+ Porównanie interpolacji Lagrange'a, funkcji sklejanych kubicznych oraz aproksymacji metodą najmniejszych kwadratów (MNK) wykazało, że wszystkie metody dają wyniki o porównywalnej dokładności. W Części~2 najniższe błędy aproksymacyjne osiągnęła metoda splajnów, jednak w rzeczywistych symulacjach (Część~3) metoda MNK stopnia 5 okazała się najlepsza ze średnim błędem $1{,}12\degree$C, w porównaniu do $1{,}15\degree$C dla splajnów. MNK naturalnie wygładza szum pomiarowy, co prowadzi do lepszej zgodności z danymi eksperymentalnymi. Kluczowym wnioskiem jest niska wrażliwość modelu na wybór metody aproksymacji — różnice w błędach względnych wyniosły jedynie $0{,}03$\%, co świadczy o stabilności numerycznej systemu.
+
+Metodą Newtona--Raphsona wyznaczono minimalną masę oleju ($m_w \approx 0{,}19$ kg) wymaganą do schłodzenia pręta do $125\degree$C w czasie $0{,}7$ s. Algorytm zbiegł po dziewięciu iteracjach z błędem poniżej $0{,}001\degree$C. Niska wartość masy wynika z odmiennych parametrów materiałowych: pojemność cieplna pręta w Części~4 ($m_b c_b \approx 0{,}073$ kJ/K) jest prawie dziesięciokrotnie mniejsza niż w Części~1 ($m_b c_b \approx 0{,}77$ kJ/K), a krótki czas oznacza pracę w początkowej, najbardziej intensywnej fazie wymiany ciepła. Wysoka pochodna $|T'_b(m_w)| \approx 450\degree$C/kg wskazuje na dużą wrażliwość rozwiązania, co wymaga precyzyjnego dozowania oleju w praktyce.
+
+Model ma bezpośrednie zastosowanie w projektowaniu systemów hartowania i obróbki cieplnej metali, umożliwiając wyznaczanie optymalnej pojemności zbiorników chłodzących.
+
+\textbf{Kluczowe osiągnięcia projektu:}
+\begin{itemize}
+	\item zweryfikowany symulator o wysokiej dokładności (błędy $<2\degree$C),
+	\item wybór optymalnej metody aproksymacji $h(\Delta T)$ — MNK stopnia 5,
+	\item wykazanie niskiej wrażliwości modelu na metodę aproksymacji ($<0{,}03$\%),
+	\item efektywne rozwiązanie problemu optymalizacyjnego (zbieżność w 9 iteracjach),
+	\item identyfikacja kluczowych parametrów: masa i temperatura oleju.
+\end{itemize}
+
+Projekt potwierdza, że metody numeryczne stanowią efektywne narzędzie do modelowania procesów wymiany ciepła. Opracowane narzędzie stanowi solidną podstawę do dalszych analiz i może być wykorzystane w praktyce inżynierskiej jako wsparcie projektowania procesów technologicznych.

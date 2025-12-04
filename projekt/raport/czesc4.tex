@@ -1,1 +1,78 @@
-\subsection*{Część 4.}
+\section{Część 4. projektu}
+
+\subsection{Cel badawczy}
+
+Celem czwartej części projektu było wyznaczenie minimalnej masy oleju chłodzącego, która pozwala schłodzić pręt do temperatury $125\degree$C w czasie $t=0{,}7$ s. W tym celu wykorzystano pełny, nieliniowy model chłodzenia wraz z aproksymowaną funkcją współczynnika wnikania ciepła $h(\Delta T)$ otrzymaną metodą najmniejszych kwadratów (MNK stopnia 5), wybraną jako optymalna w Części~3. Rozwiązanie równania $T_b(m_w, 0{,}7\ \mathrm{s}) = 125\degree\mathrm{C}$ przeprowadzono metodą Newtona--Raphsona.
+
+\subsection{Przebieg eksperymentu}
+
+W kolejnych iteracjach Newtona wykonywano symulację chłodzenia dla zadanej masy oleju i obliczano przybliżoną pochodną temperatury pręta względem masy:
+\[
+T'_b(m_w) \approx \frac{T_b(m_w + \Delta m_w) - T_b(m_w)}{\Delta m_w}.
+\]
+Aktualizacja wartości masy przebiegała zgodnie ze wzorem:
+\[
+m_w^{(i+1)} = m_w^{(i)} - 
+\frac{T_b(m_w^{(i)}) - 125}{T_b'(m_w^{(i)})}.
+\]
+Jako punkt startowy przyjęto $m_w^{(0)} = 2{,}0$ kg, a wartość różnicową $\Delta m_w = 0{,}02$ kg. Do całkowania równań różniczkowych wykorzystano ulepszoną metodę Eulera z krokiem $h=0{,}001$ s. Parametry materiałowe w tej części projektu różnią się od wykorzystanych w~Części~1: masa pręta wynosi $m_b=0{,}25$ kg, a pojemność cieplna $c_b=0{,}29$ kJ/(kg$\cdot$K).
+
+\subsection{Analiza wyników}
+
+\subsubsection{Przebieg iteracji Newtona}
+
+W Tabeli~\ref{tab:newton} przedstawiono pełny przebieg iteracji metody Newtona--Raphsona. W pierwszych trzech iteracjach algorytm napotykał na trudności numeryczne związane z dużym oddaleniem punktu startowego od rozwiązania, co prowadziło do ujemnych wartości masy oleju wymagających korekty (przycięcie wartości do połowy poprzedniej). Począwszy od iteracji czwartej, algorytm wszedł w obszar stabilny i osiągnął bardzo szybką zbieżność. Już w~iteracji dziewiątej błąd temperatury był mniejszy niż $0{,}001\degree$C.
+
+\begin{table}[H]
+	\centering
+	\caption{Iteracje metody Newtona-Raphsona dla równania $T_b(m_w)=125\degree$C.}
+	\label{tab:newton}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Iteracja $i$ &
+		$m_w^{(i)}$ [kg] &
+		$T_b(m_w^{(i)})$ [$\degree$C] &
+		$T_b'(m_w^{(i)})$ [$\degree$C/kg] &
+		$\Delta T_b = T_b - T_\mathrm{cel}$ [$\degree$C] \\
+		\hline
+		1 & 2,00000  & 35,0992  &  -4,957036  & -89,900794 \\
+		2 & 1,00000  & 45,0262  & -19,305357  & -79,973757 \\
+		3 & 0,50000  & 64,3812  & -73,289308  & -60,618750 \\
+		4 & 0,25000  & 101,2083 & -265,220581 & -23,791726 \\
+		5 & 0,16029  & 139,6936 & -580,334298 &  14,693621 \\
+		6 & 0,18561  & 125,3851 & -450,252403 &   0,385108 \\
+		7 & 0,18647  & 124,9638 & -446,649355 &  -0,036175 \\
+		8 & 0,18639  & 125,0036 & -446,988678 &   0,003566 \\
+		9 & 0,18640  & 124,9997 & -446,955240 &  -0,000350 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Na podstawie uzyskanych wyników wyznaczono wartość:
+\begin{displaymath}
+	m_w \approx 0{,}1864\ \text{kg}.
+\end{displaymath}
+
+Finalny błąd temperatury wyniósł jedynie $0{,}00035\degree$C, co potwierdza wysoką dokładność algorytmu i prawidłową implementację metody numerycznej.
+
+\subsubsection{Interpretacja wyniku}
+
+Otrzymana wartość $m_w \approx 0{,}19$ kg jest znacząco mniejsza od typowych mas oleju występujących w eksperymentach pomiarowych z~Części~1 (gdzie $m_w=2{,}5$ kg lub więcej). Wynika to z kilku czynników:
+
+\begin{enumerate}
+	\item Czas $t=0{,}7$ s jest bardzo krótki w~porównaniu do czasów eksperymentalnych ($t=2{-}5$ s), co oznacza, że wymiana ciepła odbywa się w~początkowej, najbardziej intensywnej fazie procesu.
+	
+	\item Przyjęto $m_b=0{,}25$ kg oraz $c_b=0{,}29$ kJ/(kg$\cdot$K), co odpowiada mniejszej pojemności cieplnej pręta ($m_b c_b \approx 0{,}0725$ kJ/K) w~porównaniu do poprzednich części projektu ($m_b c_b \approx 0{,}77$ kJ/K przy $m_b=0{,}2$ kg i~$c_b=3{,}85$ kJ/(kg$\cdot$K)). Pręt o~mniejszej pojemności cieplnej oddaje mniej energii, co wymaga proporcjonalnie mniejszej masy chłodziwa.
+	
+	\item Zadana temperatura $T_b=125\degree$C jest stosunkowo wysoka, co oznacza, że pręt nie musi zostać schłodzony całkowicie.
+\end{enumerate}
+
+Bardzo duża wartość bezwzględna pochodnej $|T'_b(m_w)| \approx 450\degree$C/kg wskazuje na wysoką wrażliwość rozwiązania na masę oleju. Niewielka zmiana $m_w$ o~kilka procent prowadzi do znaczących zmian temperatury końcowej, co oznacza, że w~praktyce konieczne byłoby precyzyjne dozowanie ilości chłodziwa.
+
+\subsection{Wnioski końcowe}
+
+Metoda Newtona--Raphsona okazała się skuteczną i~szybką metodą rozwiązywania równania odwrotnego rozpatrywanego w~tej części projektu. Po początkowych trudnościach numerycznych związanych z~wyborem punktu startowego, algorytm bardzo szybko zbiegł do rozwiązania. Od iteracji piątej błąd zmniejszał się z~prędkością kwadratową, typową dla metody Newtona.
+
+Uzyskany wynik $m_w \approx 0{,}19$ kg jest wiarygodny z~punktu widzenia fizyki procesu i~przyjętych parametrów materiałowych. Mała wartość masy oleju wynika przede wszystkim ze znacząco zmniejszonej pojemności cieplnej pręta oraz bardzo krótkiego czasu chłodzenia. Model wykazuje dużą wrażliwość na wartość $m_w$, co w~praktyce oznacza konieczność precyzyjnego sterowania masą chłodziwa w~rzeczywistych zastosowaniach technologicznych.
+
+Warto podkreślić, że analiza przeprowadzona w~tej części projektu stanowi przykład praktycznego zastosowania metod numerycznych do~rozwiązywania problemów optymalizacyjnych w~inżynierii procesowej.

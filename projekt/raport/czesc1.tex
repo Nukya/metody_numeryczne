@@ -1,4 +1,4 @@
-\subsection*{Część 1.}
+\section{część 1. projektu}
 
 
 W pierwszej części projektu opracowano kompletny symulator procesu chłodzenia pręta zanurzonego w oleju, oparty na układzie równań różniczkowych opisujących bilans energii pomiędzy prętem a cieczą chłodzącą. Do całkowania równań zastosowano metodę Eulera oraz metodę ulepszonego Eulera (Heuna), a otrzymane trajektorie porównano z rozwiązaniem referencyjnym wyznaczonym za pomocą solvera \texttt{ode45}.
@@ -7,7 +7,7 @@ W pierwszej części projektu opracowano kompletny symulator procesu chłodzenia
     \centering
     \includegraphics[height=0.33\textheight]{wplyw kroku na rozwiazanie - euler.png}
     \caption{Wpływ kroku $h$ na rozwiązanie - metoda Eulera}
-    \label{fig:moj_rysunek}
+
 \end{figure}
 
 Analiza numeryczna wykazała, że metoda Eulera jest silnie wrażliwa na krok czasowy i przy większych krokach znacząco odbiega od rozwiązania wzorcowego, co wynika z jej pierwszego rzędu dokładności. 
@@ -16,7 +16,7 @@ Analiza numeryczna wykazała, że metoda Eulera jest silnie wrażliwa na krok cz
     \centering
     \includegraphics[height=0.33\textheight]{wplyw kroku na rozwiazanie - euler ulepszony.png}
     \caption{Wpływ kroku $h$ na rozwiązanie - metoda ulepszonego Eulera}
-    \label{fig:moj_rysunek}
+
 \end{figure}
 
 Metoda ulepszonego Eulera (Heuna) okazała się znacznie stabilniejsza i przy kroku \mbox{$h=0{,}001$} praktycznie pokrywała się z wynikami \texttt{ode45}. Oznacza to, że ulepszony Euler zapewnia wystarczającą dokładność i stabilność przy niewielkim koszcie obliczeniowym, co czyni go odpowiednim narzędziem do dalszych analiz.
@@ -25,7 +25,7 @@ Metoda ulepszonego Eulera (Heuna) okazała się znacznie stabilniejsza i przy kr
     \centering
     \includegraphics[height=0.33\textheight]{przebieg temperatur dla roznych metod rozwiazywania rownan rozniczkowych.png}
     \caption{Przebieg temperatur dla różnych metod rozwiązywania równań różniczkowych}
-    \label{fig:moj_rysunek}
+
 \end{figure}
 
 Uzyskane przebiegi temperatur pręta i oleju są fizycznie poprawne: obserwuje się szybkie oddawanie ciepła na początku procesu oraz wykładnicze dążenie temperatur do stanu równowagi, bez niestabilności i artefaktów numerycznych. 
@@ -38,7 +38,7 @@ Istotnym etapem była weryfikacja modelu na podstawie danych pomiarowych. Porów
     \centering
     \includegraphics[width=1\textwidth]{przebiegi dla roznych zestawow danych.png}
     \caption{Przebiegi dla różnych zestawów danych}
-    \label{fig:moj_rysunek}
+
 \end{figure}
 
 

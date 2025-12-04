@@ -1,1 +1,82 @@
-\subsection*{Część 3.}
+\section{Część 3. projektu}
+
+\subsection{Cel badawczy}
+
+Celem trzeciej części projektu było zbadanie wpływu metody aproksymacji współczynnika przewodnictwa cieplnego $h(\Delta T)$ na wyniki symulacji procesu chłodzenia pręta. W analizie porównano trzy podejścia obliczeniowe: aproksymację metodą najmniejszych kwadratów (MNK) z wielomianem stopnia 5, interpolację Lagrange'a oraz funkcje sklejane kubiczne. Pozwoliło to ocenić, w jakim stopniu wybór sposobu odwzorowania zależności $h(\Delta T)$ wpływa na dokładność wyników i stabilność numeryczną modelu.
+
+\subsection{Przebieg eksperymentu}
+
+Symulacje wykonano dla czterech wybranych przypadków testowych z tabeli pomiarowej, oznaczonych numerami 1, 3, 7 i 10. Przypadki te różniły się temperaturą początkową pręta i oleju, masą chłodziwa oraz czasem chłodzenia:
+
+\begin{itemize}
+	\item przypadek 1: $T_b(0)=1200^\circ$C, $T_w(0)=25^\circ$C, $m_w=2{,}5$ kg, $t=3$ s,
+	\item przypadek 3: $T_b(0)=1100^\circ$C, $T_w(0)=70^\circ$C, $m_w=2{,}5$ kg, $t=3$ s,
+	\item przypadek 7: $T_b(0)=1100^\circ$C, $T_w(0)=70^\circ$C, $m_w=5{,}0$ kg, $t=2$ s,
+	\item przypadek 10: $T_b(0)=1100^\circ$C, $T_w(0)=70^\circ$C, $m_w=2{,}5$ kg, $t=5$ s.
+\end{itemize}
+
+Wszystkie obliczenia przeprowadzono metodą ulepszonego Eulera z krokiem czasowym $h=0{,}001$ s, co zapewniło wysoką dokładność numeryczną rozwiązania układu równań różniczkowych.
+
+\subsection{Analiza wyników}
+
+\subsubsection{Porównanie metod aproksymacji}
+
+Przeprowadzona analiza ilościowa wykazała niewielkie różnice między wszystkimi trzema metodami aproksymacji. Aproksymacja wielomianowa metodą najmniejszych kwadratów (MNK, stopień 5) osiągnęła średni błąd bezwzględny dla temperatury pręta wynoszący $1{,}12^\circ$C oraz $0{,}94^\circ$C dla temperatury oleju. Interpolacja Lagrange'a uzyskała odpowiednio $1{,}14^\circ$C i $0{,}94^\circ$C, natomiast funkcje sklejane kubiczne $1{,}15^\circ$C i $0{,}94^\circ$C. Maksymalny błąd bezwzględny dla $T_b$ wyniósł $1{,}92^\circ$C (MNK), $2{,}00^\circ$C (Lagrange) oraz $2{,}02^\circ$C (splajny), co stanowi mniej niż 2\% wartości mierzonej.
+
+Warto podkreślić, że wszystkie metody wykazały wysoką zgodność wzajemną. Różnice między wynikami poszczególnych metod nie przekroczyły $0{,}1^\circ$C w większości punktów czasowych. Świadczy to o stabilności numerycznej modelu oraz o tym, że dla danego zakresu parametrów i jakości danych pomiarowych wybór metody aproksymacji ma drugorzędne znaczenie.
+
+\subsubsection{Zgodność z pomiarami eksperymentalnymi}
+
+Porównanie wyników symulacji z danymi pomiarowymi wykazało dobrą zgodność jakościową i ilościową. Średnie błędy względne nie przekroczyły 1\% dla wszystkich metod, co stanowi bardzo dobry wynik. Największe rozbieżności zaobserwowano w przypadku 7 (zwiększona masa oleju $m_w=5$ kg), gdzie błąd temperatury pręta osiągnął maksymalną wartość około $2^\circ$C. Wynika to prawdopodobnie z większej wrażliwości układu na parametry przy dużej pojemności cieplnej oleju.
+
+Obserwowane błędy można przypisać kilku źródłom:
+\begin{itemize}
+	\item \textbf{błędy modelowe}: założenie jednorodności temperatury w pręcie i oleju, pominięcie strat ciepła do otoczenia,
+	\item \textbf{błędy numeryczne}: dyskretyzacja czasowa metodą Eulera, zaokrąglenia arytmetyczne,
+	\item \textbf{błędy aproksymacji} $h(\Delta T)$: ograniczona liczba punktów pomiarowych, wybór funkcji bazowych,
+\end{itemize}
+
+\newpage
+\subsubsection{Wpływ wyboru metody na przebieg symulacji}
+
+Analiza przebiegów czasowych temperatur $T_b(t)$ i $T_w(t)$ wskazuje, że w początkowej fazie chłodzenia, gdy różnica temperatur przekracza $1000^\circ$C, wszystkie metody aproksymacji dają praktycznie identyczne wyniki. Wynika to z faktu, że współczynnik $h$ zmienia się w tym zakresie stosunkowo powoli i liniowo, więc każda z metod aproksymacji odwzorowuje tę zależność w podobny sposób.
+
+W fazie końcowej, przy $\Delta T < 200^\circ$C, różnice między metodami pozostają nadal niewielkie, jednak można zaobserwować subtelne rozbieżności w szczegółowym kształcie krzywych. Metoda MNK, dzięki wygładzeniu danych, zapewniła nieco lepszą zgodność z pomiarami eksperymentalnymi, podczas gdy interpolacja Lagrange'a i splajny kubiczne, przechodzące dokładnie przez węzły interpolacyjne, odwzorowywały lokalne fluktuacje w danych pomiarowych.
+
+\subsection{Wybór metody referencyjnej}
+
+Na podstawie analizy ilościowej wybrano \textbf{aproksymację wielomianową metodą najmniejszych kwadratów (stopień 5)} jako metodę referencyjną wykorzystywaną w dalszej części projektu. Zadecydowały o tym następujące czynniki:
+
+\begin{itemize}
+	\item najniższe średnie i maksymalne błędy bezwzględne dla temperatury pręta,
+	\item metoda MNK naturalnie redukuje wpływ przypadkowych błędów w danych,
+	\item wielomian stopnia 5 jest wystarczająco elastyczny, by odwzorować nieliniowość $h(\Delta T)$, ale nie prowadzi do nadmiernych oscylacji,
+\end{itemize}
+
+Funkcje sklejane kubiczne, mimo teoretycznych zalet (ciągłość, brak zjawiska Rungego), nie przyniosły wymiernej poprawy dokładności w analizowanych przypadkach. Interpolacja Lagrange'a, choć przechodzi dokładnie przez węzły, również nie wykazała przewagi nad metodą MNK.
+
+\subsection{Wrażliwość modelu na metodę aproksymacji}
+
+Przeprowadzone badania wskazują, że model jest słabo wrażliwy na wybór metody aproksymacji funkcji $h(\Delta T)$. Różnice między wynikami uzyskanymi przy użyciu różnych metod nie przekroczyły $0{,}1^\circ$C w większości punktów oraz $0{,}03$\% w ujęciu błędów względnych. Jest to wartość znacznie poniżej niepewności pomiarowej i akceptowalna we wszystkich zastosowaniach praktycznych.
+
+Słaba wrażliwość wynika z dwóch czynników:
+\begin{enumerate}
+	\item Funkcja $h(\Delta T)$ jest stosunkowo gładka w badanym zakresie $\Delta T \in [-1500, 2000]^\circ$C, więc wszystkie metody aproksymacji odwzorowują ją w podobny sposób.
+	\item Dynamika układu jest zdominowana przez duże różnice temperatur w początkowej fazie chłodzenia, gdzie szczegóły aproksymacji $h(\Delta T)$ mają niewielki wpływ na końcowy wynik.
+\end{enumerate}
+
+W praktyce oznacza to, że do większości obliczeń inżynierskich wystarczająca jest prosta aproksymacja wielomianowa, a stosowanie bardziej wyrafinowanych metod (splajny, Lagrange) jest uzasadnione jedynie w przypadkach wymagających ekstremalnej precyzji lub pracy z bardzo nieliniowymi zależnościami.
+
+\subsection{Uwagi praktyczne}
+
+W niniejszym projekcie równoodległe węzły interpolacyjne dla funkcji sklejanych wygenerowano poprzez interpolację liniową z danych pierwotnie nierównoodległych. Podejście to jest prostym rozwiązaniem wystarczającym dla celów demonstracyjnych, lecz w zastosowaniach praktycznych preferuje się użycie splajnów również dla nierównomiernie rozmieszczonych danych.
+
+W implementacji funkcji sklejanych przyjęto zerowe warunki brzegowe na pochodne ($\alpha=0$, $\beta=0$), co odpowiada założeniu liniowego zachowania funkcji poza zakresem pomiarowym. W bardziej zaawansowanej analizie można by wyznaczyć te warunki z fizycznych właściwości układu.
+
+Wybór wielomianu stopnia 5 w metodzie MNK był wynikiem eksperymentalnego doboru: niższe stopnie (2-3) nie odwzorowywały nieliniowości $h(\Delta T)$, podczas gdy wyższe stopnie (7-9) prowadziły do oscylacji, szczególnie na brzegach przedziału.
+
+\subsection{Podsumowanie}
+
+Przeprowadzone badania wykazały, że wszystkie analizowane metody aproksymacji funkcji $h(\Delta T)$ dają wyniki praktycznie identyczne i zgodne z pomiarami eksperymentalnymi. Z~punktu widzenia zastosowań inżynierskich najlepszą metodą okazała się aproksymacja wielomianowa metodą najmniejszych kwadratów (stopień 5), która przy porównywalnej złożoności obliczeniowej zapewniła nieznacznie lepszą zgodność z danymi pomiarowymi.
+
+Kluczowym wnioskiem jest niska wrażliwość modelu na wybór metody aproksymacji, co świadczy o jego stabilności numerycznej. Różnice między metodami są praktycznie nieistotne ($< 0,03\%$ błędu względnego), co daje pewność, że wybór metody nie jest krytyczny dla wiarygodności wyników symulacji.
