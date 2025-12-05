@@ -31,12 +31,11 @@ Porównanie wyników symulacji z danymi pomiarowymi wykazało dobrą zgodność 
 
 Obserwowane błędy można przypisać kilku źródłom:
 \begin{itemize}
-	\item \textbf{błędy modelowe}: założenie jednorodności temperatury w pręcie i oleju, pominięcie strat ciepła do otoczenia,
-	\item \textbf{błędy numeryczne}: dyskretyzacja czasowa metodą Eulera, zaokrąglenia arytmetyczne,
-	\item \textbf{błędy aproksymacji} $h(\Delta T)$: ograniczona liczba punktów pomiarowych, wybór funkcji bazowych,
+	\item założenie jednorodności temperatury w pręcie i oleju, pominięcie strat ciepła do otoczenia,
+	\item dyskretyzacja czasowa metodą Eulera, zaokrąglenia arytmetyczne,
+	\item ograniczona liczba punktów pomiarowych, wybór funkcji bazowych,
 \end{itemize}
 
-\newpage
 \subsubsection{Wpływ wyboru metody na przebieg symulacji}
 
 Analiza przebiegów czasowych temperatur $T_b(t)$ i $T_w(t)$ wskazuje, że w początkowej fazie chłodzenia, gdy różnica temperatur przekracza $1000^\circ$C, wszystkie metody aproksymacji dają praktycznie identyczne wyniki. Wynika to z faktu, że współczynnik $h$ zmienia się w tym zakresie stosunkowo powoli i liniowo, więc każda z metod aproksymacji odwzorowuje tę zależność w podobny sposób.
@@ -45,7 +44,7 @@ W fazie końcowej, przy $\Delta T < 200^\circ$C, różnice między metodami pozo
 
 \subsection{Wybór metody referencyjnej}
 
-Na podstawie analizy ilościowej wybrano \textbf{aproksymację wielomianową metodą najmniejszych kwadratów (stopień 5)} jako metodę referencyjną wykorzystywaną w dalszej części projektu. Zadecydowały o tym następujące czynniki:
+Na podstawie analizy ilościowej wybrano {aproksymację wielomianową metodą najmniejszych kwadratów (stopień 5) jako metodę referencyjną wykorzystywaną w dalszej części projektu. Zadecydowały o tym następujące czynniki:
 
 \begin{itemize}
 	\item najniższe średnie i maksymalne błędy bezwzględne dla temperatury pręta,
@@ -53,7 +52,7 @@ Na podstawie analizy ilościowej wybrano \textbf{aproksymację wielomianową met
 	\item wielomian stopnia 5 jest wystarczająco elastyczny, by odwzorować nieliniowość $h(\Delta T)$, ale nie prowadzi do nadmiernych oscylacji,
 \end{itemize}
 
-Funkcje sklejane kubiczne, mimo teoretycznych zalet (ciągłość, brak zjawiska Rungego), nie przyniosły wymiernej poprawy dokładności w analizowanych przypadkach. Interpolacja Lagrange'a, choć przechodzi dokładnie przez węzły, również nie wykazała przewagi nad metodą MNK.
+Funkcje sklejane, mimo teoretycznych zalet (ciągłość, brak zjawiska Rungego), nie przyniosły wymiernej poprawy dokładności w analizowanych przypadkach. Interpolacja Lagrange'a, choć przechodzi dokładnie przez węzły, również nie wykazała przewagi nad metodą MNK.
 
 \subsection{Wrażliwość modelu na metodę aproksymacji}
 
